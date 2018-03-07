@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioEventBehavior : MonoBehaviour {
-    public AudioEvent m_ExplosionAudioEvent;
+public class UnitBrain : MonoBehaviour {
+    public string Name { get; set; }    
     // Use this for initialization
     void Start () {
 		
@@ -13,4 +13,9 @@ public class AudioEventBehavior : MonoBehaviour {
 	void Update () {
 		
 	}
+    public void ShoutOut()
+    {
+        Debug.Log("OUCH!");
+    }
+
 }
