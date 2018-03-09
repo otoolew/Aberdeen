@@ -10,7 +10,6 @@ using UnityEngine.Events;
 
 public class UnitHealth : MonoBehaviour {
     public FloatVariable HP;
-
     public bool ResetHP;
     public FloatReference StartingHP;
     public UnityEvent DamageEvent;
@@ -22,18 +21,27 @@ public class UnitHealth : MonoBehaviour {
             HP.SetValue(StartingHP);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void DealDamage(FloatReference damage)
     {
-        DamageDealer damage = other.gameObject.GetComponent<DamageDealer>();
-        if (damage != null)
-        {
-            HP.ApplyChange(-damage.DamageAmount);
-            DamageEvent.Invoke();
-        }
-
+        HP.ApplyChange(-damage);
         if (HP.Value <= 0.0f)
         {
             DeathEvent.Invoke();
         }
     }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    DamageDealer damage = other.gameObject.GetComponent<DamageDealer>();
+    //    if (damage != null)
+    //    {
+    //        HP.ApplyChange(-damage.DamageAmount);
+    //        DamageEvent.Invoke();
+    //    }
+
+    //    if (HP.Value <= 0.0f)
+    //    {
+    //        DeathEvent.Invoke();
+    //    }
+    //}
 }
