@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireRayCast : MonoBehaviour {
-
+public class UnitVision : MonoBehaviour {
     LineRenderer lineRenderer;
     Ray ray;
     RaycastHit rayHit;
+    public Transform visionPoint;
     public FloatVariable FireRate;
     public FloatVariable RayRange;
     public LayerMask LayerRayMask;
@@ -15,33 +15,16 @@ public class FireRayCast : MonoBehaviour {
 
     private void Start()
     {
-        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer = visionPoint.GetComponent<LineRenderer>();
     }
-    void Update()
-    {
-        // Add the time since Update was last called to the timer.
-        timer += Time.deltaTime;
-
-        // If the Fire1 button is being press and it's time to fire...
-        if (Input.GetMouseButton(0) && timer >= FireRate.Value)
-        {
-            Fire();
-        }
-        if (timer >= FireRate.Value * effectDuration)
-        {
-            // ... disable the effects.
-            lineRenderer.enabled = false;
-        }
-    }
-
-    private void Fire()
+    public void ScanForTarget()
     {
         timer = 0f;
         lineRenderer.enabled = true;
-        lineRenderer.SetPosition(0, transform.position);       
-        ray.origin = transform.position;
-        ray.direction = transform.forward;
-
+        lineRenderer.SetPosition(0, visionPoint.transform.position);
+        ray.origin = visionPoint.transform.position;
+        ray.direction = visionPoint.transform.forward;
+        StartCoroutine(Scanning());
         if (Physics.Raycast(ray, out rayHit, RayRange.Value, LayerRayMask))
         {
             Debug.Log("RayHit " + rayHit.collider.name);
@@ -52,5 +35,16 @@ public class FireRayCast : MonoBehaviour {
             lineRenderer.SetPosition(1, ray.origin + ray.direction * RayRange.Value);
         }
     }
+
+    public void ScanForDestination()
+    {
+
+    }
+    private IEnumerator Scanning()
+    {
+        yield return new WaitForSeconds(0.5f);
+        lineRenderer.enabled = false;
+    }
+
 
 }

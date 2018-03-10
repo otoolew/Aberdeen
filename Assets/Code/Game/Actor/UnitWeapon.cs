@@ -47,7 +47,7 @@ public class UnitWeapon : MonoBehaviour {
         float roundedCd = Mathf.Round(coolDownTimeLeft);
     }
 
-    private void FireWeapon()
+    public void FireWeapon()
     {
         nextReadyTime = coolDownDuration + Time.time;
         coolDownTimeLeft = coolDownDuration;
