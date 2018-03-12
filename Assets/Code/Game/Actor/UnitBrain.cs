@@ -9,6 +9,8 @@ public class UnitBrain : MonoBehaviour
     NavMeshAgent navAgent;
     UnitWeapon unitWeapon;
     UnitVision unitVision;
+    UnitHUD unitHUD;
+    public GameObject CurrentTarget;
 
     public string Name { get; set; }
     // Use this for initialization
@@ -18,6 +20,7 @@ public class UnitBrain : MonoBehaviour
         navAgent = GetComponent<NavMeshAgent>();
         unitWeapon = GetComponent<UnitWeapon>();
         unitVision = GetComponent<UnitVision>();
+        unitHUD = GetComponent<UnitHUD>();
     }
 
     // Update is called once per frame

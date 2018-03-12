@@ -9,13 +9,13 @@ public class IdleState : UnitBaseFSM {
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
         Debug.Log("Enter IdleState");
-        unitVision.ScanForTarget();
+        unitHUD.ChangeText("Idle State");
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        unitVision.ScanForTarget();
         //navAgent.SetDestination(enemy.transform.position);
     }
 
