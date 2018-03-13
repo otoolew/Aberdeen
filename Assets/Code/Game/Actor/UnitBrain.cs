@@ -26,7 +26,7 @@ public class UnitBrain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
     public void SetNavAgentTarget(Transform target)
     {
