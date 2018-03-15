@@ -11,21 +11,23 @@ public class IdleState : UnitBaseFSM {
         Debug.Log("Enter IdleState");
         unitHUD.ChangeText("Idle State");
 
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (unitBrain.WayPointList.Count > 0)
-        {
-            animator.SetBool("IsAdvancing", false);
-        }
-        else
-        {
-            animator.SetBool("IsDefending", false);
-        }
-        navAgent.SetDestination(animator.transform.position);
-        unitBrain.FindTargetInVision();
+        animator.SetBool("IsAdvancing", true);
+        //if (unitBrain.WayPointList.Count > 0)
+        //{
+        //    animator.SetBool("IsAdvancing", false);
+        //}
+        //else
+        //{
+        //    animator.SetBool("IsDefending", false);
+        //}
+        //navAgent.SetDestination(animator.transform.position);
+        //unitBrain.FindTargetInVision();
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

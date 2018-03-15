@@ -18,25 +18,6 @@ public class AdvancingState : UnitBaseFSM
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {   // WayPoint Check
-        if (unitBrain.WayPointList.Count <= 0)
-        {
-            animator.SetBool("IsDefending", true);
-            return;
-        }
-        Transform waypoint = unitBrain.WayPointList[0].transform;
-
-        navAgent.SetDestination(wayPoints[currentWP].transform.position);
-        var lookPos = wayPoints[currentWP].transform.position - unitObject.transform.position;
-        lookPos.y = 0;
-        Quaternion rotation = Quaternion.LookRotation(lookPos);
-        unitObject.transform.rotation = rotation;
-        if (navAgent.remainingDistance <= navAgent.stoppingDistance)
-        {
-            unitBrain.WayPointList.Remove(waypoint);
-        }
-
-        navAgent.SetDestination(wayPoints[currentWP].transform.position);
-
 
     }
 

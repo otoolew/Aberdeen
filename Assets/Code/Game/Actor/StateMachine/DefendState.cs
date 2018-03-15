@@ -17,6 +17,11 @@ public class DefendState : UnitBaseFSM
     {
         navAgent.SetDestination(animator.transform.position);
         unitBrain.FindTargetInVision();
+        if(unitBrain.CurrentTarget != null)
+        {
+            unitWeapon.FireWeapon();
+        }
+
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

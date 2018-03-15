@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using ActionGameFramework.Health;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,9 +12,10 @@ public class UnitBrain : MonoBehaviour
     UnitWeapon unitWeapon;
     UnitHUD unitHUD;
     public List<Transform> VisableTargetList;
-    public List<Transform> WayPointList;
+    public WayPointLane unitLane;
     public Transform CurrentTarget;
-    public Transform CurrentWayPoint;
+    public Node CurrentNode;
+    public Vector3 Destination;
     public float TargetDistance;
     public LayerMask TargetMask;
     public float UnitVisionRange;
@@ -67,16 +70,84 @@ public class UnitBrain : MonoBehaviour
             i++;
         }      
     }
+    /// <summary>
+    /// Obsolete
+    /// 
+    /// </summary>
     void FindWayPoints()
     {
-        WayPoint[] waypoints = GameObject.FindObjectsOfType<WayPoint>();
-        foreach (var waypoint in waypoints)
-        {
-            if (waypoint.WayPointTeam.Value == teamName.Value)
-            {
-                WayPointList.Add(waypoint.transform);
-            }
-        }       
+        //WayPoint[] waypoints = GameObject.FindObjectsOfType<WayPoint>();
+        //foreach (var waypoint in waypoints)
+        //{
+        //    if (waypoint.WayPointTeam.Value == teamName.Value)
+        //    {
+        //        WayPointList.Add(waypoint.transform);
+        //    }
+        //}       
     }
 
+    /// <summary>
+    /// The event that fires off when a unit has been destroyed
+    /// </summary>
+    public Action unitDestroyed;
+
+    /// <summary>
+    /// Sets the node to navigate to
+    /// </summary>
+    /// <param name="node">The node that the agent will navigate to</param>
+    public void SetNode(Node node)
+    {
+        CurrentNode = node;
+    }
+    /// <summary>
+    /// Finds the next node in the path
+    /// </summary>
+    public void GetNextNode(Node currentlyEnteredNode)
+    {
+        // Don't do anything if the calling node is the same as the m_CurrentNode
+        if (CurrentNode != currentlyEnteredNode)
+        {
+            return;
+        }
+        if (CurrentNode == null)
+        {
+            Debug.LogError("Cannot find current node");
+            return;
+        }
+
+        Node nextNode = CurrentNode.GetNextNode();
+        if (nextNode == null)
+        {
+            if (navAgent.enabled)
+            {
+                navAgent.isStopped = true;
+            }
+            return;
+        }
+
+        Debug.Assert(nextNode != CurrentNode);
+        SetNode(nextNode);
+        MoveToNode();
+    }
+    /// <summary>
+    /// Moves the agent to a position in the <see cref="Agent.m_CurrentNode" />
+    /// </summary>
+    public void MoveToNode()
+    {
+        Vector3 nodePosition = CurrentNode.GetRandomPointInNodeArea();
+        nodePosition.y = CurrentNode.transform.position.y;
+        Destination = nodePosition;
+        NavigateTo(Destination);
+    }
+    /// <summary>
+    /// Set the NavMeshAgent's destination
+    /// </summary>
+    /// <param name="nextPoint">The position to navigate to</param>
+    protected virtual void NavigateTo(Vector3 nextPoint)
+    {
+        if (navAgent.isOnNavMesh)
+        {
+            navAgent.SetDestination(nextPoint);
+        }
+    }
 }

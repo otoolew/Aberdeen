@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitAI : MonoBehaviour {
+public class BattleManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
