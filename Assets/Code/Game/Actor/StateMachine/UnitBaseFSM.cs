@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 public class UnitBaseFSM : StateMachineBehaviour
 {
-    public GameObject unit;
+    public GameObject unitObject;
+    public UnitBrain unitBrain;
     public NavMeshAgent navAgent;
     public UnitWeapon unitWeapon;
     public UnitHUD unitHUD;
@@ -13,9 +14,10 @@ public class UnitBaseFSM : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        unit = animator.gameObject;       
-        navAgent = unit.GetComponent<NavMeshAgent>();
-        unitWeapon = unit.GetComponent<UnitWeapon>();
-        unitHUD = unit.GetComponent<UnitHUD>();
+        unitObject = animator.gameObject;       
+        navAgent = unitObject.GetComponent<NavMeshAgent>();
+        unitBrain = unitObject.GetComponent<UnitBrain>();
+        unitWeapon = unitObject.GetComponent<UnitWeapon>();
+        unitHUD = unitBrain.GetComponent<UnitHUD>();
     }
 }

@@ -2,30 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleState : UnitBaseFSM {
+public class AttackState : UnitBaseFSM {
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
-        Debug.Log("Enter IdleState");
-        unitHUD.ChangeText("Idle State");
-
+        Debug.Log("Enter Attack State");
+        unitHUD.ChangeText("Attacking State!");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (unitBrain.WayPointList.Count > 0)
+        navAgent.SetDestination(animator.transform.position);
+        if(unitBrain.CurrentTarget != null)
         {
-            animator.SetBool("IsAdvancing", false);
+            animator.SetBool("HasTarget", true);
+            unitObject.transform.LookAt(unitBrain.CurrentTarget);
+            unitWeapon.FireWeapon();
         }
         else
         {
-            animator.SetBool("IsDefending", false);
+            // Move On to Next Objective
         }
-        navAgent.SetDestination(animator.transform.position);
-        unitBrain.FindTargetInVision();
+
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
