@@ -30,13 +30,17 @@ public class UnitBrain : MonoBehaviour
         navAgent = GetComponent<NavMeshAgent>();
         unitWeapon = GetComponent<UnitWeapon>();
         unitHUD = GetComponent<UnitHUD>();
-        FindWayPoints();
+        InitWayPath();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(anim.GetBool("HasTarget") == true)
+        {
+            Debug.Log("I have a Target!");
+
+        }   
     }
     public void SetNavAgentTarget(Transform target)
     {
@@ -74,16 +78,19 @@ public class UnitBrain : MonoBehaviour
     /// Obsolete
     /// 
     /// </summary>
-    void FindWayPoints()
+    void InitWayPath()
     {
+        WayPointLane[] unitLanes = FindObjectsOfType<WayPointLane>();
+
         //WayPoint[] waypoints = GameObject.FindObjectsOfType<WayPoint>();
-        //foreach (var waypoint in waypoints)
-        //{
-        //    if (waypoint.WayPointTeam.Value == teamName.Value)
-        //    {
-        //        WayPointList.Add(waypoint.transform);
-        //    }
-        //}       
+        foreach (var item in unitLanes)
+        {
+            if (item.WayPointTeam.Value == teamName.Value)
+            {
+                unitLane = item;
+            }
+        }
+        CurrentNode = unitLane.StartingNode;
     }
 
     /// <summary>

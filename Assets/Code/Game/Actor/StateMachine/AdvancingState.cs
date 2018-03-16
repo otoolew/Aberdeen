@@ -18,7 +18,15 @@ public class AdvancingState : UnitBaseFSM
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {   // WayPoint Check
-
+        navAgent.SetDestination(unitBrain.CurrentNode.transform.position);
+        
+        if (navAgent.remainingDistance < navAgent.stoppingDistance)
+        {
+            if(unitBrain.CurrentNode.lastNode == true)
+            {
+                animator.SetBool("IsDefending", true);
+            }
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

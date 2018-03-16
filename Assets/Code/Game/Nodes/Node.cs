@@ -14,6 +14,10 @@ public class Node : MonoBehaviour
     /// </summary>
     [HideInInspector]
     public AreaMeshCreator areaMesh;
+    /// <summary>
+    /// Is this node the last one?
+    /// </summary>
+    public bool lastNode;
 
     /// <summary>
     /// Selection weight of the node

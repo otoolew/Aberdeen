@@ -5,5 +5,4 @@ using UnityEngine;
 public class WayPointLane : MonoBehaviour {
     public StringVariable WayPointTeam;
     public Node StartingNode;
-    public Node[] nodes;
 }

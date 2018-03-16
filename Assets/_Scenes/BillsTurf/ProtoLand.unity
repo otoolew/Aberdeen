@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -520,7 +520,17 @@ Prefab:
         type: 2}
       propertyPath: unitLane
       value: 
-      objectReference: {fileID: 946566683}
+      objectReference: {fileID: 0}
+    - target: {fileID: 195764514684211972, guid: a2052da8686a18547a7d5bbec008af20,
+        type: 2}
+      propertyPath: m_StoppingDistance
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 195764514684211972, guid: a2052da8686a18547a7d5bbec008af20,
+        type: 2}
+      propertyPath: m_Speed
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2052da8686a18547a7d5bbec008af20, type: 2}
   m_IsPrefabParent: 0
@@ -1202,7 +1212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedNodes:
-  - {fileID: 0}
+  - {fileID: 1633827956}
 --- !u!114 &859773442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1215,6 +1225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areaMesh: {fileID: 0}
+  lastNode: 0
   weight: 1
 --- !u!135 &859773443
 SphereCollider:
@@ -1272,9 +1283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8cfb899d743064f83dcca30a5b2cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WayPointTeam: {fileID: 0}
-  StartingNode: {fileID: 0}
-  nodes: []
+  WayPointTeam: {fileID: 11400000, guid: a72ae2befa3a32d48b0330aee3bedb5b, type: 2}
+  StartingNode: {fileID: 2038648676}
 --- !u!1 &958706880
 GameObject:
   m_ObjectHideFlags: 0
@@ -1931,7 +1941,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedNodes:
-  - {fileID: 0}
+  - {fileID: 1903761993}
 --- !u!114 &1633827956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1944,6 +1954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areaMesh: {fileID: 0}
+  lastNode: 0
   weight: 1
 --- !u!135 &1633827957
 SphereCollider:
@@ -2119,6 +2130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areaMesh: {fileID: 0}
+  lastNode: 0
   weight: 1
 --- !u!135 &1903761994
 SphereCollider:
@@ -2264,7 +2276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedNodes:
-  - {fileID: 0}
+  - {fileID: 859773442}
 --- !u!4 &2038648675
 Transform:
   m_ObjectHideFlags: 0
@@ -2290,6 +2302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areaMesh: {fileID: 0}
+  lastNode: 0
   weight: 1
 --- !u!135 &2038648677
 SphereCollider:

@@ -17,9 +17,12 @@ public class DefendState : UnitBaseFSM
     {
         navAgent.SetDestination(animator.transform.position);
         unitBrain.FindTargetInVision();
+        Debug.Log("Target: " + unitBrain.CurrentTarget);
+
         if(unitBrain.CurrentTarget != null)
         {
-            unitWeapon.FireWeapon();
+
+            animator.SetBool("HasTarget", true);
         }
 
     }
