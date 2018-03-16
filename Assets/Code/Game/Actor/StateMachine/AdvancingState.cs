@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class AdvancingState : UnitBaseFSM
 {
-    WayPoint[] wayPoints;
-    int currentWP;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -13,20 +11,30 @@ public class AdvancingState : UnitBaseFSM
         base.OnStateEnter(animator, stateInfo, layerIndex);
         Debug.Log("Enter Advancing State");
         unitHUD.ChangeText("Advancing State!");
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {   // WayPoint Check
+        unitBrain.FindTargetInVision();
+        Debug.Log("Advancing State");
         navAgent.SetDestination(unitBrain.CurrentNode.transform.position);
-        
+        navAgent.isStopped = false;
         if (navAgent.remainingDistance < navAgent.stoppingDistance)
         {
-            if(unitBrain.CurrentNode.lastNode == true)
+            Debug.Log("Stopping Distance State");
+            if (unitBrain.CurrentNode.lastNode == true)
             {
-                animator.SetBool("IsDefending", true);
+                Debug.Log("Last Node Distance State");
+                //animator.SetBool("IsScanning", true);
+                animator.SetBool("IsAdvancing", false);
+                navAgent.SetDestination(unitObject.transform.position);
+
+                return;
             }
         }
+        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

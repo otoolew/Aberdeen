@@ -4,9 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+using UnityEngine.Events;
+/// <summary>
+/// UnitBrain Class controls unit logic
+/// </summary>
 public class UnitBrain : MonoBehaviour
 {
+    public string Name { get; set; }
     Animator anim;
     NavMeshAgent navAgent;
     UnitWeapon unitWeapon;
@@ -21,7 +25,9 @@ public class UnitBrain : MonoBehaviour
     public float UnitVisionRange;
     public float UnitVisionRadius;
     public StringVariable teamName;
-    public string Name { get; set; }
+
+    public UnityEvent OnEnemySighted;
+
 
     // Use this for initialization
     void Start()
@@ -36,11 +42,7 @@ public class UnitBrain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(anim.GetBool("HasTarget") == true)
-        {
-            Debug.Log("I have a Target!");
-
-        }   
+   
     }
     public void SetNavAgentTarget(Transform target)
     {
@@ -52,9 +54,11 @@ public class UnitBrain : MonoBehaviour
 
         Vector3 p1 = transform.position;
 
-        if (Physics.SphereCast(p1, UnitVisionRadius, transform.forward, out hit, UnitVisionRange))
+        if (Physics.SphereCast(p1, UnitVisionRadius, transform.forward, out hit, UnitVisionRange, TargetMask))
         {
             CurrentTarget = hit.collider.gameObject.transform;
+            Debug.Log("Found Target!");
+            anim.SetTrigger("Attack");
         }
         else
         {
@@ -156,5 +160,9 @@ public class UnitBrain : MonoBehaviour
         {
             navAgent.SetDestination(nextPoint);
         }
+    }
+    public void EnemySighted()
+    {
+        Debug.Log("I have sighted an Enemy");
     }
 }

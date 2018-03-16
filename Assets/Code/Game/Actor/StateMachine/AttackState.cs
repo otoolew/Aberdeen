@@ -15,16 +15,18 @@ public class AttackState : UnitBaseFSM {
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        navAgent.SetDestination(animator.transform.position);
+        //navAgent.SetDestination(animator.transform.position);
+        navAgent.isStopped = true;
         if(unitBrain.CurrentTarget != null)
         {
+            Debug.Log("I am Attacking!");
             animator.SetBool("HasTarget", true);
             unitObject.transform.LookAt(unitBrain.CurrentTarget);
             unitWeapon.FireWeapon();
         }
         else
         {
-            // Move On to Next Objective
+            // Move to Advance State
         }
 
     }
