@@ -14,7 +14,6 @@ public class ScanState : UnitBaseFSM
         base.OnStateEnter(animator, stateInfo, layerIndex);
         Debug.Log("Enter Scan State");
         timer = 0f;
-
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -26,7 +25,7 @@ public class ScanState : UnitBaseFSM
         
         if (unitBrain.CurrentTarget != null)
         {
-            Debug.Log("Enemy Sighted! Attaking now!");
+            //Debug.Log("Enemy Sighted! Attaking now!");
             animator.SetTrigger("Attack");        
             // Set State to Attack State.
             return;

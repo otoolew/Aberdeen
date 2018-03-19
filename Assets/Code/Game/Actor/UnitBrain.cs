@@ -57,7 +57,7 @@ public class UnitBrain : MonoBehaviour
         if (Physics.SphereCast(p1, UnitVisionRadius, transform.forward, out hit, UnitVisionRange, TargetMask))
         {
             CurrentTarget = hit.collider.gameObject.transform;
-            Debug.Log("Found Target!");
+            //Debug.Log("Found Target!");
             anim.SetTrigger("Attack");
         }
         else

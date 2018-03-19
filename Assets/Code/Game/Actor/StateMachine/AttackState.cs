@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackState : UnitBaseFSM {
-
+    float timer;
+    float cooldown = 1f;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -15,14 +16,21 @@ public class AttackState : UnitBaseFSM {
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        timer += Time.deltaTime;
         //navAgent.SetDestination(animator.transform.position);
         navAgent.isStopped = true;
         if(unitBrain.CurrentTarget != null)
         {
-            Debug.Log("I am Attacking!");
+            //Debug.Log("I am Attacking!");
             animator.SetBool("HasTarget", true);
             unitObject.transform.LookAt(unitBrain.CurrentTarget);
-            unitWeapon.FireWeapon();
+            
+            if(timer >= cooldown)
+            {
+                timer = 0;
+                unitWeapon.FireWeapon();
+            }
+                
         }
         else
         {
