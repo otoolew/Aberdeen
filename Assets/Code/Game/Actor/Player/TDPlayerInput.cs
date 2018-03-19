@@ -28,27 +28,22 @@ public class TDPlayerInput : MonoBehaviour {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         bool c = Input.GetButton("Crouch");
-
-        Debug.Log("Is Crouching " + c);
-        if(c == false)
-        {
-
-        }
+        bool a = Input.GetButton("Aim");
         // Move the player around the scene.
-        Move(h, v, c);
+        Move(h, v, c, a);
 
         // Turn the player to face the mouse cursor.
         Turning();
 
         // Animate the player.
-        Animating(h, v, c);
+        Animating(h, v, c, a);
     }
 
-    void Move(float h, float v, bool c)
+    void Move(float h, float v, bool c, bool a)
     {
         // Set the movement vector based on the axis input.
         movement.Set(h, 0f, v);
-        if(c == true)
+        if(c == true || a ==true)
         {
             movement = movement.normalized * (speed/2) * Time.deltaTime;
         }
@@ -86,7 +81,7 @@ public class TDPlayerInput : MonoBehaviour {
         }
     }
 
-    void Animating(float h, float v, bool c)
+    void Animating(float h, float v, bool c, bool a)
     {
         // Create a boolean that is true if either of the input axes is non-zero.
         bool walking = h != 0f || v != 0f;
@@ -99,6 +94,15 @@ public class TDPlayerInput : MonoBehaviour {
         else
         {
             anim.SetBool("IsCrouching", false);
+        }
+
+        if (a == true)
+        {
+            anim.SetBool("IsAiming", true);
+        }
+        else
+        {
+            anim.SetBool("IsAiming", false);
         }
 
         anim.SetBool("IsMoving", walking);

@@ -377,11 +377,9 @@ GameObject:
   - component: {fileID: 95895225824177510}
   - component: {fileID: 54145015668805736}
   - component: {fileID: 136914983381222022}
-  - component: {fileID: 195582719481328730}
   - component: {fileID: 114740825776818562}
-  - component: {fileID: 114388184105209322}
   - component: {fileID: 114934134297169444}
-  - component: {fileID: 114374020180033746}
+  - component: {fileID: 114006874732141124}
   m_Layer: 0
   m_Name: PlayerSoldier
   m_TagString: Untagged
@@ -776,7 +774,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1744012252683244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -23.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4649972470319036}
@@ -1130,7 +1128,7 @@ Animator:
   m_GameObject: {fileID: 1744012252683244}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 317bd1d2b778cf0448b311d615661b6e, type: 3}
-  m_Controller: {fileID: 9100000, guid: b06be00212df9664391fc53a67e0cb81, type: 2}
+  m_Controller: {fileID: 9100000, guid: a379a28247a5a9e4e8918c7c12d94182, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1138,6 +1136,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114006874732141124
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1744012252683244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3d291c3fbeed3c4da544e3760d4e9cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 6
+  firePoint: {fileID: 4516699058887898}
 --- !u!114 &114008636810883308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1204,73 +1215,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114374020180033746
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1744012252683244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08869d555fa77844c8b562bc2dcb8d6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: c3dd91aa8aa16cf43af346d99ed985fb, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
---- !u!114 &114388184105209322
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1744012252683244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a9739b35d201b34b9a13037d48bf048, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  VisableTargetList: []
-  unitLane: {fileID: 0}
-  CurrentTarget: {fileID: 0}
-  CurrentNode: {fileID: 0}
-  Destination: {x: 0, y: 0, z: 0}
-  TargetDistance: 0
-  TargetMask:
-    serializedVersion: 2
-    m_Bits: 256
-  UnitVisionRange: 50
-  UnitVisionRadius: 10
-  teamName: {fileID: 11400000, guid: a72ae2befa3a32d48b0330aee3bedb5b, type: 2}
-  OnEnemySighted:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: State Changed
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114740825776818562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1565,27 +1509,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.92334974, y: 0.078886956, z: 0.00000014901161}
     m_Extent: {x: 0.29437295, y: 0.26435283, z: 0.2137996}
   m_DirtyAABB: 0
---- !u!195 &195582719481328730
-NavMeshAgent:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1744012252683244}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 6
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0.25
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!222 &222077054008473494
 CanvasRenderer:
   m_ObjectHideFlags: 1
