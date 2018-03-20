@@ -17,7 +17,7 @@ public class UnitBrain : MonoBehaviour
     UnitHUD unitHUD;
     Ray ray;
     RaycastHit rayHit;
-    public List<Transform> VisableTargetList;
+    public List<Transform> VisableTargetList = new List<Transform>();
     public WayPointLane unitLane;
     public Transform CurrentTarget;
     public Node CurrentNode;
@@ -43,21 +43,39 @@ public class UnitBrain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-   
+        Vector3 forward = transform.TransformDirection(Vector3.forward) * UnitVisionRange;
+        if (CurrentTarget != null)
+        {
+            Debug.DrawRay(transform.position, forward, Color.red);
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, forward, Color.green);
+        }
+
+
     }
     public void SetNavAgentTarget(Transform target)
     {
         navAgent.SetDestination(target.position);
     }
+
     public void FindTargetInVision()
     {
         RaycastHit hit;
         Vector3 p1 = transform.position;
         if (Physics.SphereCast(p1, UnitVisionRadius, transform.forward, out hit, UnitVisionRange, TargetMask))
         {
-            CurrentTarget = hit.collider.gameObject.transform;
-            //Debug.Log("Found Target!");
-            anim.SetTrigger("Attack");
+            ray.origin = transform.position;
+            ray.direction = transform.forward;
+
+            if (Physics.Raycast(ray, out rayHit, UnitVisionRange, VisionMask))
+            {
+                Debug.Log("RayHit " + rayHit.collider.name);
+                CurrentTarget = hit.collider.gameObject.transform;
+                //Debug.Log("Found Target!");
+                anim.SetTrigger("Attack");
+            }
         }
         else
         {
@@ -65,35 +83,31 @@ public class UnitBrain : MonoBehaviour
             //return to previous state;
         }
     }
-
     void FindTargetsInArea()
     {
         VisableTargetList.Clear();
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, UnitVisionRadius, TargetMask);
+
         int i = 0;
         while (i < hitColliders.Length)
         {
-            VisableTargetList.Add(hitColliders[i].GetComponent<Transform>());
-            i++;
-        }      
-    }
-    /// <summary>
-    /// Check if Target is in Line of Sight.
-    /// </summary>
-    /// <returns></returns>
-    public bool TargetInSight()
-    {
-        bool result = false;
-        ray.origin = transform.position;
-        ray.direction = transform.forward;
 
-        if (Physics.Raycast(ray, out rayHit, UnitVisionRange, VisionMask))
-        {
-            Debug.Log("RayHit " + rayHit.collider.name);
+            ray.origin = transform.position;
+            ray.direction = transform.forward;
+            //Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
+            Debug.DrawRay(ray.origin, ray.direction * UnitVisionRange, Color.green);
+            if (Physics.Raycast(ray, out rayHit, UnitVisionRange, TargetMask))
+            {
+                Debug.DrawRay(ray.origin, ray.direction * UnitVisionRange, Color.red);
+                CurrentTarget = rayHit.collider.gameObject.transform;
+                //Debug.Log("Found Target!");
+                anim.SetTrigger("Attack");
+            }
+            i++;
         }
 
-        return false;
     }
+
     /// <summary>
     /// Obsolete
     /// 

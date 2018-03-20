@@ -32,15 +32,15 @@ public class ScanState : UnitBaseFSM
         }
         if (timer < cooldown)
         {
-            Debug.Log("No Threat in view... Continue to Scan!");
+            //Debug.Log("No Threat in view... Continue to Scan!");
         }
         else if(unitBrain.CurrentNode.lastNode == true)
         {
-            Debug.Log("Nowhere Go!! So I am Chilling here!");
+            //Debug.Log("Nowhere Go!! So I am Chilling here!");
         }
         else
         {
-            Debug.Log("Moving to Next WayPoint");
+            //Debug.Log("Moving to Next WayPoint");
             animator.SetBool("IsAdvancing", true);
             animator.SetBool("HasTarget", false);
         }

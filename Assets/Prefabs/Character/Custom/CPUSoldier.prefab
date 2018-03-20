@@ -425,6 +425,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1771650327474254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4634658237187010}
+  m_Layer: 0
+  m_Name: VisionPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1782637036588260
 GameObject:
   m_ObjectHideFlags: 1
@@ -528,10 +543,9 @@ GameObject:
   - component: {fileID: 54845334250013330}
   - component: {fileID: 136934370489818744}
   - component: {fileID: 195173298650550510}
-  - component: {fileID: 114334874830855284}
-  - component: {fileID: 114611599955569272}
   - component: {fileID: 114512949516844242}
-  - component: {fileID: 114097090160997096}
+  - component: {fileID: 114843157740405282}
+  - component: {fileID: 114776124763810360}
   m_Layer: 0
   m_Name: CPUSoldier
   m_TagString: Untagged
@@ -714,6 +728,7 @@ Transform:
   - {fileID: 4726895634539576}
   - {fileID: 224524548493190192}
   - {fileID: 4518856850873888}
+  - {fileID: 4634658237187010}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -852,6 +867,19 @@ Transform:
   - {fileID: 4592545238983772}
   m_Father: {fileID: 4721683296372504}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4634658237187010
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1771650327474254}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.25, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4370562017699320}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4643169247691668
 Transform:
@@ -1138,34 +1166,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114097090160997096
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1913307363301950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08869d555fa77844c8b562bc2dcb8d6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: c3dd91aa8aa16cf43af346d99ed985fb, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114242623950063862
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1211,19 +1211,6 @@ MonoBehaviour:
   LayerRayMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114334874830855284
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1913307363301950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b0f5f9e6484ad048aa9a33ea42b769c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: 98e4e6febd86c0d4d8f5d23471132894, type: 2}
-  weaponHolder: {fileID: 1100428405228112}
 --- !u!114 &114512949516844242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1236,7 +1223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TextDisplay: {fileID: 114889077082370786}
---- !u!114 &114611599955569272
+--- !u!114 &114776124763810360
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1244,37 +1231,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 1913307363301950}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a9739b35d201b34b9a13037d48bf048, type: 3}
+  m_Script: {fileID: 11500000, guid: ca954cac2cca3984ba0d9473a5d59612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VisableTargetList: []
-  unitLane: {fileID: 0}
-  CurrentTarget: {fileID: 0}
-  CurrentNode: {fileID: 0}
-  Destination: {x: 0, y: 0, z: 0}
-  TargetDistance: 0
-  TargetMask:
-    serializedVersion: 2
-    m_Bits: 256
-  UnitVisionRange: 50
+  currentState: {fileID: 0}
+  VisionPoint: {fileID: 0}
+  remainState: {fileID: 0}
+  UnitVisionRange: 30
   UnitVisionRadius: 10
   teamName: {fileID: 11400000, guid: a72ae2befa3a32d48b0330aee3bedb5b, type: 2}
-  OnEnemySighted:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: State Changed
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  navMeshAgent: {fileID: 0}
+  wayPointList: []
+  nextWayPoint: 0
+  chaseTarget: {fileID: 0}
+  stateTimeElapsed: 0
+--- !u!114 &114843157740405282
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1913307363301950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ddfe4e640515c847bc508ad87a909d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 10
+  Range: 50
+  Rate: 0.5
+  EffectDuration: 0.05
+  FirePoint: {fileID: 4970017345109654}
+  HitMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &114889077082370786
 MonoBehaviour:
   m_ObjectHideFlags: 1

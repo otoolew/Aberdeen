@@ -36,7 +36,7 @@ public class UnitWeaponBehavior : MonoBehaviour
         StartCoroutine(ShotEffect());
         if (Physics.Raycast(ray, out rayHit, Range, HitMask))
         {
-            Debug.Log("RayHit " + rayHit.collider.name);
+            //Debug.Log("RayHit " + rayHit.collider.name);
             lineRenderer.SetPosition(1, rayHit.point);
         }
         else

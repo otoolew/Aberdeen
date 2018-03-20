@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.5748171, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -520,22 +520,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4370562017699320, guid: 65ea30062188a3b4798a184d27d9c2bf, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
-    - target: {fileID: 114611599955569272, guid: 65ea30062188a3b4798a184d27d9c2bf,
+    - target: {fileID: 114776124763810360, guid: 65ea30062188a3b4798a184d27d9c2bf,
         type: 2}
-      propertyPath: OnEnemySighted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: VisionPoint
       value: 
-      objectReference: {fileID: 1251239382}
-    - target: {fileID: 1913307363301950, guid: 65ea30062188a3b4798a184d27d9c2bf, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114097090160997096, guid: 65ea30062188a3b4798a184d27d9c2bf, type: 2}
-    - {fileID: 114334874830855284, guid: 65ea30062188a3b4798a184d27d9c2bf, type: 2}
+      objectReference: {fileID: 247174805}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 65ea30062188a3b4798a184d27d9c2bf, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &247174805 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4634658237187010, guid: 65ea30062188a3b4798a184d27d9c2bf,
+    type: 2}
+  m_PrefabInternal: {fileID: 247174804}
 --- !u!1 &307086448
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,30 +609,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 307086448}
---- !u!1 &340334054 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1913307363301950, guid: 65ea30062188a3b4798a184d27d9c2bf,
-    type: 2}
-  m_PrefabInternal: {fileID: 247174804}
---- !u!114 &340334055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 340334054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ddfe4e640515c847bc508ad87a909d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 10
-  Range: 50
-  Rate: 0.5
-  EffectDuration: 0.05
-  FirePoint: {fileID: 1723950766}
-  HitMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!1 &386658248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,7 +1195,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 859773439}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -27.1, y: -20.2, z: 1.6}
+  m_LocalPosition: {x: -13.7, y: 0, z: -8.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 946566682}
@@ -1454,7 +1429,7 @@ Transform:
   - {fileID: 1633827954}
   - {fileID: 1903761991}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &946566683
 MonoBehaviour:
@@ -2073,7 +2048,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1619200897
 GameObject:
@@ -2273,11 +2248,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1723950766 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4970017345109654, guid: 65ea30062188a3b4798a184d27d9c2bf,
-    type: 2}
-  m_PrefabInternal: {fileID: 247174804}
 --- !u!1 &1745756193
 GameObject:
   m_ObjectHideFlags: 0
@@ -2393,7 +2363,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4341866322687130, guid: 5678a841051e1be42a93a343a71bc354, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 136914983381222022, guid: 5678a841051e1be42a93a343a71bc354,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5678a841051e1be42a93a343a71bc354, type: 2}
