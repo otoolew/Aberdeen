@@ -23,7 +23,6 @@ public class UnitWeapon : MonoBehaviour {
         coolDownDuration = weapon.WeaponCoolDown;
         weapon.Initialize(weaponHolder);
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -40,7 +39,6 @@ public class UnitWeapon : MonoBehaviour {
             CoolDown();
         }
     }
-
     private void CoolDown()
     {
         coolDownTimeLeft -= Time.deltaTime;

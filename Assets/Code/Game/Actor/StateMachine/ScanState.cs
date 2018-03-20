@@ -12,7 +12,7 @@ public class ScanState : UnitBaseFSM
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
-        Debug.Log("Enter Scan State");
+        //.Log("Enter Scan State");
         timer = 0f;
     }
 

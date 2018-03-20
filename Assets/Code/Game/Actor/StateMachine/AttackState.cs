@@ -9,7 +9,7 @@ public class AttackState : UnitBaseFSM {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
-        Debug.Log("Enter Attack State");
+        //Debug.Log("Enter Attack State");
         unitHUD.ChangeText("Attacking State!");
     }
 

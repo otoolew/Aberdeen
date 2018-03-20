@@ -21,7 +21,6 @@ public class TDPlayerInput : MonoBehaviour {
         playerRigidbody = GetComponent<Rigidbody>();
     }
 
-
     void FixedUpdate()
     {
         // Store the input axes.

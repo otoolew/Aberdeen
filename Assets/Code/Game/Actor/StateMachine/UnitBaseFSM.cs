@@ -8,7 +8,7 @@ public class UnitBaseFSM : StateMachineBehaviour
     public GameObject unitObject;
     public UnitBrain unitBrain;
     public NavMeshAgent navAgent;
-    public UnitWeapon unitWeapon;
+    public UnitWeaponBehavior unitWeapon;
     public UnitHUD unitHUD;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -17,7 +17,7 @@ public class UnitBaseFSM : StateMachineBehaviour
         unitObject = animator.gameObject;       
         navAgent = unitObject.GetComponent<NavMeshAgent>();
         unitBrain = unitObject.GetComponent<UnitBrain>();
-        unitWeapon = unitObject.GetComponent<UnitWeapon>();
+        unitWeapon = unitObject.GetComponent<UnitWeaponBehavior>();
         unitHUD = unitBrain.GetComponent<UnitHUD>();
     }
 }

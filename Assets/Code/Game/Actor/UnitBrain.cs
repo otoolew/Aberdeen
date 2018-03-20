@@ -13,8 +13,10 @@ public class UnitBrain : MonoBehaviour
     public string Name { get; set; }
     Animator anim;
     NavMeshAgent navAgent;
-    UnitWeapon unitWeapon;
+    UnitWeaponBehavior unitWeapon;
     UnitHUD unitHUD;
+    Ray ray;
+    RaycastHit rayHit;
     public List<Transform> VisableTargetList;
     public WayPointLane unitLane;
     public Transform CurrentTarget;
@@ -25,16 +27,15 @@ public class UnitBrain : MonoBehaviour
     public float UnitVisionRange;
     public float UnitVisionRadius;
     public StringVariable teamName;
-
+    public LayerMask VisionMask;
     public UnityEvent OnEnemySighted;
-
 
     // Use this for initialization
     void Start()
     {
         anim = GetComponent<Animator>();
         navAgent = GetComponent<NavMeshAgent>();
-        unitWeapon = GetComponent<UnitWeapon>();
+        unitWeapon = GetComponent<UnitWeaponBehavior>();
         unitHUD = GetComponent<UnitHUD>();
         InitWayPath();
     }
@@ -51,9 +52,7 @@ public class UnitBrain : MonoBehaviour
     public void FindTargetInVision()
     {
         RaycastHit hit;
-
         Vector3 p1 = transform.position;
-
         if (Physics.SphereCast(p1, UnitVisionRadius, transform.forward, out hit, UnitVisionRange, TargetMask))
         {
             CurrentTarget = hit.collider.gameObject.transform;
@@ -77,6 +76,23 @@ public class UnitBrain : MonoBehaviour
             VisableTargetList.Add(hitColliders[i].GetComponent<Transform>());
             i++;
         }      
+    }
+    /// <summary>
+    /// Check if Target is in Line of Sight.
+    /// </summary>
+    /// <returns></returns>
+    public bool TargetInSight()
+    {
+        bool result = false;
+        ray.origin = transform.position;
+        ray.direction = transform.forward;
+
+        if (Physics.Raycast(ray, out rayHit, UnitVisionRange, VisionMask))
+        {
+            Debug.Log("RayHit " + rayHit.collider.name);
+        }
+
+        return false;
     }
     /// <summary>
     /// Obsolete
