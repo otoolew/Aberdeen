@@ -19,9 +19,9 @@ namespace Core.StateMachine
 
             Debug.DrawRay(controller.VisionPoint.position, controller.VisionPoint.forward.normalized * controller.UnitVisionRange, Color.green);
 
-            if (Physics.SphereCast(controller.VisionPoint.position, controller.UnitVisionRadius, controller.VisionPoint.forward, out hit, controller.UnitVisionRange)
-                && hit.collider.CompareTag("Player"))
+            if (Physics.SphereCast(controller.VisionPoint.position, controller.UnitVisionRadius, controller.VisionPoint.forward, out hit, controller.UnitVisionRange, controller.targetMask))
             {
+                Debug.Log("Hit " + hit.collider.name);
                 controller.chaseTarget = hit.transform;
                 return true;
             }

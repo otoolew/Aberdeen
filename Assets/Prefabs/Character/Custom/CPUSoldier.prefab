@@ -317,7 +317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1466556659224090
 GameObject:
   m_ObjectHideFlags: 1
@@ -543,9 +543,9 @@ GameObject:
   - component: {fileID: 54845334250013330}
   - component: {fileID: 136934370489818744}
   - component: {fileID: 195173298650550510}
+  - component: {fileID: 114776124763810360}
   - component: {fileID: 114512949516844242}
   - component: {fileID: 114843157740405282}
-  - component: {fileID: 114776124763810360}
   m_Layer: 0
   m_Name: CPUSoldier
   m_TagString: Untagged
@@ -690,7 +690,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1375520757011238}
-  m_LocalRotation: {x: 0.6646334, y: 0.041310567, z: 0.7451423, w: 0.036316104}
+  m_LocalRotation: {x: 0.6646334, y: 0.04131057, z: 0.7451423, w: 0.036316108}
   m_LocalPosition: {x: -0.5700798, y: 0.0006140371, z: -0.12735397}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
   m_Children:
@@ -1158,7 +1158,7 @@ Animator:
   m_GameObject: {fileID: 1913307363301950}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 317bd1d2b778cf0448b311d615661b6e, type: 3}
-  m_Controller: {fileID: 9100000, guid: b06be00212df9664391fc53a67e0cb81, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2fbecacbfb428a444a6bcde30f11d01a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1234,17 +1234,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca954cac2cca3984ba0d9473a5d59612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: {fileID: 0}
-  VisionPoint: {fileID: 0}
+  currentState: {fileID: 11400000, guid: 11cdc0bbcd2185841a5bf0acdd851c86, type: 2}
+  VisionPoint: {fileID: 4634658237187010}
   remainState: {fileID: 0}
   UnitVisionRange: 30
-  UnitVisionRadius: 10
+  UnitVisionRadius: 30
   teamName: {fileID: 11400000, guid: a72ae2befa3a32d48b0330aee3bedb5b, type: 2}
-  navMeshAgent: {fileID: 0}
-  wayPointList: []
-  nextWayPoint: 0
+  unitWeapon: {fileID: 0}
+  wayPointList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   chaseTarget: {fileID: 0}
+  nextWayPoint: 0
   stateTimeElapsed: 0
+  navMeshAgent: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!114 &114843157740405282
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Name: PatrolState
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 0}
-  - {fileID: 0}
-  transitions: []
-  sceneGizmoColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  - {fileID: 11400000, guid: ae3d0cf3a6b14074ca4448c3b79a5b3c, type: 2}
+  transitions:
+  - decision: {fileID: 11400000, guid: 2dd8b10e62f5b904cbfaee18beadc141, type: 2}
+    trueState: {fileID: 11400000, guid: eb66696cc1645a24d86cb4ef2d41b185, type: 2}
+    falseState: {fileID: 11400000}
+  sceneGizmoColor: {r: 0.11724126, g: 1, b: 0, a: 1}

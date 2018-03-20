@@ -8,52 +8,28 @@ namespace Core.StateMachine
     public class StateController : MonoBehaviour
     {
         public State currentState;
-        //public EnemyStats enemyStats;
         public Transform VisionPoint;
         public State remainState;
         public float UnitVisionRange;
         public float UnitVisionRadius;
         public StringVariable teamName;
         public UnitWeaponBehavior unitWeapon;
-
+        public List<Transform> wayPointList;
+        public Transform chaseTarget;
+        public int nextWayPoint;
+        public float stateTimeElapsed;
+        public LayerMask targetMask;
         [HideInInspector] public NavMeshAgent navMeshAgent;
-        //[HideInInspector] public Complete.TankShooting tankShooting;
-        [HideInInspector] public List<Transform> wayPointList;
-        [HideInInspector] public int nextWayPoint;
-        [HideInInspector] public Transform chaseTarget;
-        [HideInInspector] public float stateTimeElapsed;
-
-        private bool aiActive;
-
-
-        void Awake()
-        {
-            //tankShooting = GetComponent<Complete.TankShooting>();
-            //navMeshAgent = GetComponent<NavMeshAgent>();
-        }
+        [HideInInspector] public Animator animator;
         private void Start()
         {
             unitWeapon = GetComponent<UnitWeaponBehavior>();
             navMeshAgent = GetComponent<NavMeshAgent>();
-        }
-        public void SetupAI(bool aiActivationFromTankManager, List<Transform> wayPointsFromTankManager)
-        {
-            wayPointList = wayPointsFromTankManager;
-            aiActive = aiActivationFromTankManager;
-            if (aiActive)
-            {
-                navMeshAgent.enabled = true;
-            }
-            else
-            {
-                navMeshAgent.enabled = false;
-            }
+            animator = GetComponent<Animator>();
         }
 
         void Update()
         {
-            if (!aiActive)
-                return;
             currentState.UpdateState(this);
         }
 
@@ -62,7 +38,7 @@ namespace Core.StateMachine
             if (currentState != null && VisionPoint != null)
             {
                 Gizmos.color = currentState.sceneGizmoColor;
-               // Gizmos.DrawWireSphere(eyes.position, enemyStats.lookSphereCastRadius);
+                Gizmos.DrawWireSphere(VisionPoint.position, UnitVisionRadius);
             }
         }
 

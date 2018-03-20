@@ -14,6 +14,7 @@ namespace Core.StateMachine
 
         private void Patrol(StateController controller)
         {
+            controller.animator.SetBool("IsMoving", true);
             controller.navMeshAgent.destination = controller.wayPointList[controller.nextWayPoint].position;
             controller.navMeshAgent.isStopped = false;
 
