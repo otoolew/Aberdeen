@@ -19,6 +19,7 @@ namespace Core.StateMachine
         public int nextWayPoint;
         public float stateTimeElapsed;
         public LayerMask targetMask;
+        public Transform AttackTarget;
         [HideInInspector] public NavMeshAgent navMeshAgent;
         [HideInInspector] public Animator animator;
         private void Start()

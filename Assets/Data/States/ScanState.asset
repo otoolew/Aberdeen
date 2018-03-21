@@ -9,12 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54482cd2ab8df0445ba2a468b0e5587d, type: 3}
-  m_Name: PatrolState
+  m_Name: ScanState
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11400000, guid: ae3d0cf3a6b14074ca4448c3b79a5b3c, type: 2}
+  - {fileID: 11400000, guid: 69f20cb76c1cb7e45897755ec5e78d09, type: 2}
   transitions:
   - decision: {fileID: 11400000, guid: 878b5f55c91666945a7396ca7a7ab1f7, type: 2}
     trueState: {fileID: 11400000, guid: 215ef0fdb9c9ecb4baf0e1c114bfbe7d, type: 2}
     falseState: {fileID: 11400000, guid: 34d8c2d4818c04d45b8d699d0d2d97d7, type: 2}
-  sceneGizmoColor: {r: 0.11724126, g: 1, b: 0, a: 1}
+  sceneGizmoColor: {r: 0.4601926, g: 0.44485295, b: 0.8897059, a: 1}

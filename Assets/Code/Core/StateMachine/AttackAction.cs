@@ -7,6 +7,7 @@ namespace Core.StateMachine
     [CreateAssetMenu(menuName = "StateMachine/Actions/Attack")]
     public class AttackAction : Action
     {
+        Ray ray;
         public override void Act(StateController controller)
         {
             Attack(controller);
@@ -21,10 +22,22 @@ namespace Core.StateMachine
             if (Physics.SphereCast(controller.VisionPoint.position, controller.UnitVisionRadius, controller.VisionPoint.forward, out hit, controller.UnitVisionRange)
                 && hit.collider.CompareTag("Player"))
             {
-                if (controller.CheckIfCountDownElapsed(controller.unitWeapon.Rate))
+                RaycastHit rayHit;
+                ray.origin = controller.VisionPoint.position;
+                ray.direction = controller.VisionPoint.forward;
+
+                if (Physics.Raycast(ray, out rayHit, controller.UnitVisionRange, controller.targetMask))
                 {
-                    controller.unitWeapon.FireWeapon();
+                    Debug.Log("RayHit " + rayHit.collider.name);
+                    controller.AttackTarget = hit.transform;
+                    controller.transform.Rotate(hit.transform.position);
+                    //controller.navMeshAgent.isStopped = true;
+                    if (controller.CheckIfCountDownElapsed(controller.unitWeapon.Rate))
+                    {
+                        controller.unitWeapon.FireWeapon();
+                    }
                 }
+
             }
         }
     }
