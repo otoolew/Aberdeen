@@ -33,7 +33,7 @@ namespace Core.StateMachine
                 {
                     Debug.Log("RayHit " + rayHit.collider.name);
                     controller.chaseTarget = hit.transform;
-                    controller.AttackTarget = hit.transform;
+                    controller.attackTarget = hit.transform;
                     return true;
                 }
                 return false;

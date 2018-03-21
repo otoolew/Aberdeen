@@ -15,7 +15,7 @@ namespace Core.StateMachine
         private bool Scan(StateController controller)
         {
             controller.navMeshAgent.isStopped = true;
-            controller.VisionPoint.Rotate(0, 200 * Time.deltaTime, 0);
+            controller.VisionPoint.Rotate(0, controller.UnitScanSpeed * Time.deltaTime, 0);
             return controller.CheckIfCountDownElapsed(2);
         }
     }

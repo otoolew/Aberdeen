@@ -10,15 +10,16 @@ using UnityEngine.Events;
 /// </summary>
 public class UnitBrain : MonoBehaviour
 {
-    public string Name { get; set; }
-    Animator anim;
-    NavMeshAgent navAgent;
-    UnitWeaponBehavior unitWeapon;
-    UnitHUD unitHUD;
-    Ray ray;
-    RaycastHit rayHit;
-    public List<Transform> VisableTargetList = new List<Transform>();
-    public WayPointLane unitLane;
+    public string UnitName { get; set; }
+    private Animator animator;
+    private NavMeshAgent navAgent;
+    private UnitWeaponBehavior unitWeapon;
+    private UnitHUD unitHUD;
+    private Ray ray;
+    private RaycastHit rayHit;
+    private SphereCollider visionCollider;
+    public List<Transform> VisableTargetList;
+    public WayPointLane UnitLane;
     public Transform CurrentTarget;
     public Node CurrentNode;
     public Vector3 Destination;
@@ -26,64 +27,77 @@ public class UnitBrain : MonoBehaviour
     public LayerMask TargetMask;
     public float UnitVisionRange;
     public float UnitVisionRadius;
-    public StringVariable teamName;
-    public LayerMask VisionMask;
+    public float UnitAttackRange;
+    public StringVariable TeamName;
+    public LayerMask BlockingMask;
     public UnityEvent OnEnemySighted;
 
     // Use this for initialization
     void Start()
     {
-        anim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         navAgent = GetComponent<NavMeshAgent>();
         unitWeapon = GetComponent<UnitWeaponBehavior>();
         unitHUD = GetComponent<UnitHUD>();
+        visionCollider = GetComponent<SphereCollider>();
+        VisableTargetList = new List<Transform>();
         InitWayPath();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 forward = transform.TransformDirection(Vector3.forward) * UnitVisionRange;
+        //if (!VisableTargetList.Contains(CurrentTarget))
+        //{
+        //    FindTargetInVision();
+        //}
+
         if (CurrentTarget != null)
         {
-            Debug.DrawRay(transform.position, forward, Color.red);
+            TargetDistance = Vector3.Distance(transform.position, CurrentTarget.transform.position);
+            animator.SetFloat("TargetDistance", TargetDistance);
         }
         else
         {
-            Debug.DrawRay(transform.position, forward, Color.green);
+            FindTargetInVision();
+            TargetDistance = 1000f;
+            animator.SetFloat("TargetDistance", TargetDistance);
         }
-
-
     }
     public void SetNavAgentTarget(Transform target)
     {
         navAgent.SetDestination(target.position);
     }
-
     public void FindTargetInVision()
     {
-        RaycastHit hit;
-        Vector3 p1 = transform.position;
-        if (Physics.SphereCast(p1, UnitVisionRadius, transform.forward, out hit, UnitVisionRange, TargetMask))
+        foreach (var target in VisableTargetList)
         {
-            ray.origin = transform.position;
-            ray.direction = transform.forward;
-
-            if (Physics.Raycast(ray, out rayHit, UnitVisionRange, VisionMask))
+            ray = new Ray
             {
-                Debug.Log("RayHit " + rayHit.collider.name);
-                CurrentTarget = hit.collider.gameObject.transform;
+                origin = transform.position,
+                direction = transform.forward
+            };
+
+            if (Physics.Raycast(ray, out rayHit, UnitVisionRange, TargetMask))
+            {
+                //Debug.Log("RayHit " + rayHit.collider.name);
+                CurrentTarget = rayHit.collider.gameObject.transform;
+                Debug.Log("Current Target Set " + CurrentTarget);
                 //Debug.Log("Found Target!");
-                anim.SetTrigger("Attack");
+                animator.SetBool("HasTarget", true);
+                transform.LookAt(CurrentTarget);
+                Debug.DrawRay(ray.origin, ray.direction * visionCollider.radius, Color.red);
+            }
+            else
+            {
+                animator.SetBool("HasTarget", false);
+                Debug.DrawRay(ray.origin, ray.direction * visionCollider.radius, Color.green);
             }
         }
-        else
-        {
-            CurrentTarget = null;
-            //return to previous state;
-        }
+
     }
-    void FindTargetsInArea()
+
+    public void FindTargetsInArea()
     {
         VisableTargetList.Clear();
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, UnitVisionRadius, TargetMask);
@@ -101,17 +115,11 @@ public class UnitBrain : MonoBehaviour
                 Debug.DrawRay(ray.origin, ray.direction * UnitVisionRange, Color.red);
                 CurrentTarget = rayHit.collider.gameObject.transform;
                 //Debug.Log("Found Target!");
-                anim.SetTrigger("Attack");
             }
             i++;
         }
 
     }
-
-    /// <summary>
-    /// Obsolete
-    /// 
-    /// </summary>
     void InitWayPath()
     {
         WayPointLane[] unitLanes = FindObjectsOfType<WayPointLane>();
@@ -119,12 +127,13 @@ public class UnitBrain : MonoBehaviour
         //WayPoint[] waypoints = GameObject.FindObjectsOfType<WayPoint>();
         foreach (var item in unitLanes)
         {
-            if (item.WayPointTeam.Value == teamName.Value)
+            if (item.WayPointTeam.Value == TeamName.Value)
             {
-                unitLane = item;
+                UnitLane = item;
+                CurrentNode = UnitLane.StartingNode;
+                break;
             }
         }
-        CurrentNode = unitLane.StartingNode;
     }
 
     /// <summary>
@@ -152,7 +161,7 @@ public class UnitBrain : MonoBehaviour
         }
         if (CurrentNode == null)
         {
-            Debug.LogError("Cannot find current node");
+            Debug.Log("Cannot find current node");
             return;
         }
 
@@ -193,6 +202,34 @@ public class UnitBrain : MonoBehaviour
     }
     public void EnemySighted()
     {
-        Debug.Log("I have sighted an Enemy");
+        Debug.Log("I have sighted an Enemy!");
+    }
+    public void LostEnemySight()
+    {
+        Debug.Log("I have LOST sight of an Enemy!");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            FindTargetsInArea();
+        }
+
+    }
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.gameObject.tag == "Player")
+    //    {
+    //        FindTargetsInArea();
+    //    }
+    //}
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("I sense nothing is near...!");
+            VisableTargetList.Remove(other.transform);
+        }
     }
 }

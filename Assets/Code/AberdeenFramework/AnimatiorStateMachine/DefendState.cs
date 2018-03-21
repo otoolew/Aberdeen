@@ -10,21 +10,24 @@ public class DefendState : UnitBaseFSM
         base.OnStateEnter(animator, stateInfo, layerIndex);
         Debug.Log("Enter Defend State");
         unitHUD.ChangeText("Defending State!");
+        unitBrain.SetNavAgentTarget(animator.transform);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        navAgent.SetDestination(animator.transform.position);
         unitBrain.FindTargetInVision();
-        Debug.Log("Target: " + unitBrain.CurrentTarget);
 
-        if(unitBrain.CurrentTarget != null)
+        if (unitBrain.CurrentNode.lastNode)
         {
-
-            animator.SetBool("HasTarget", true);
+            //Debug.Log("No Next Node");
+            animator.SetBool("HasNextNode", false);
         }
-
+        else
+        {
+            animator.SetBool("HasNextNode", true);
+        }
+        //unitBrain.FindTargetInVision();
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

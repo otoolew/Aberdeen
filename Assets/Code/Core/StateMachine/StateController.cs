@@ -12,6 +12,7 @@ namespace Core.StateMachine
         public State remainState;
         public float UnitVisionRange;
         public float UnitVisionRadius;
+        public float UnitScanSpeed;
         public StringVariable teamName;
         public UnitWeaponBehavior unitWeapon;
         public List<Transform> wayPointList;
@@ -19,7 +20,7 @@ namespace Core.StateMachine
         public int nextWayPoint;
         public float stateTimeElapsed;
         public LayerMask targetMask;
-        public Transform AttackTarget;
+        public Transform attackTarget;
         [HideInInspector] public NavMeshAgent navMeshAgent;
         [HideInInspector] public Animator animator;
         private void Start()

@@ -22,11 +22,11 @@ public class ScanState : UnitBaseFSM
         timer += Time.deltaTime;
         unitBrain.FindTargetInVision();
         //Debug.Log("Animator HasTarget() == " + animator.GetBool("HasTarget"));
-        
+
         if (unitBrain.CurrentTarget != null)
         {
             //Debug.Log("Enemy Sighted! Attaking now!");
-            animator.SetTrigger("Attack");        
+            animator.SetBool("HasTarget", true);
             // Set State to Attack State.
             return;
         }
@@ -34,14 +34,14 @@ public class ScanState : UnitBaseFSM
         {
             //Debug.Log("No Threat in view... Continue to Scan!");
         }
-        else if(unitBrain.CurrentNode.lastNode == true)
+        else if (unitBrain.CurrentNode.lastNode == true)
         {
             //Debug.Log("Nowhere Go!! So I am Chilling here!");
         }
         else
         {
             //Debug.Log("Moving to Next WayPoint");
-            animator.SetBool("IsAdvancing", true);
+            //animator.SetBool("IsAdvancing", true);
             animator.SetBool("HasTarget", false);
         }
     }

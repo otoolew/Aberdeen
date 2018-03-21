@@ -29,9 +29,9 @@ namespace Core.StateMachine
                 if (Physics.Raycast(ray, out rayHit, controller.UnitVisionRange, controller.targetMask))
                 {
                     Debug.Log("RayHit " + rayHit.collider.name);
-                    controller.AttackTarget = hit.transform;
+                    controller.attackTarget = hit.transform;
                     controller.transform.Rotate(hit.transform.position);
-                    //controller.navMeshAgent.isStopped = true;
+                    controller.navMeshAgent.isStopped = true;
                     if (controller.CheckIfCountDownElapsed(controller.unitWeapon.Rate))
                     {
                         controller.unitWeapon.FireWeapon();
