@@ -16,13 +16,14 @@ public class AttackState : UnitBaseFSM {
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        base.OnStateUpdate(animator, stateInfo, layerIndex);
         timer += Time.deltaTime;
         //navAgent.SetDestination(animator.transform.position);
         navAgent.isStopped = true;
-        unitBrain.FindTargetsInArea();
-        unitObject.transform.LookAt(unitBrain.CurrentTarget);
-        if (unitBrain.CurrentTarget != null)
+
+        if (unitBrain.TargetInSight())
         {
+            //animator.transform.LookAt(unitBrain.CurrentTarget);
             //Debug.Log("I am Attacking!");
             //unitBrain.TargetDistance = Vector3.Distance(unitBrain.transform.position, unitBrain.CurrentTarget.transform.position);
             if (unitBrain.TargetDistance <= unitBrain.UnitAttackRange)

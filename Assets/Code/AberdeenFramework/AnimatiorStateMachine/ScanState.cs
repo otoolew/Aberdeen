@@ -19,17 +19,10 @@ public class ScanState : UnitBaseFSM
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        timer += Time.deltaTime;
-        unitBrain.FindTargetInVision();
-        //Debug.Log("Animator HasTarget() == " + animator.GetBool("HasTarget"));
+        base.OnStateUpdate(animator, stateInfo, layerIndex);
 
-        if (unitBrain.CurrentTarget != null)
-        {
-            //Debug.Log("Enemy Sighted! Attaking now!");
-            animator.SetBool("HasTarget", true);
-            // Set State to Attack State.
-            return;
-        }
+        timer += Time.deltaTime;
+        //Debug.Log("Animator HasTarget() == " + animator.GetBool("HasTarget"));
         if (timer < cooldown)
         {
             //Debug.Log("No Threat in view... Continue to Scan!");

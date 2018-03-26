@@ -1732,6 +1732,11 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: a72ae2befa3a32d48b0330aee3bedb5b,
         type: 2}
+    - target: {fileID: 195173298650550510, guid: 65ea30062188a3b4798a184d27d9c2bf,
+        type: 2}
+      propertyPath: m_AngularSpeed
+      value: 260
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 65ea30062188a3b4798a184d27d9c2bf, type: 2}
   m_IsPrefabParent: 0

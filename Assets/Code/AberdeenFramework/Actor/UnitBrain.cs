@@ -44,68 +44,18 @@ public class UnitBrain : MonoBehaviour
         InitWayPath();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //if (!VisableTargetList.Contains(CurrentTarget))
-        //{
-        //    FindTargetInVision();
-        //}
-
-        if (CurrentTarget != null)
-        {
-            TargetDistance = Vector3.Distance(transform.position, CurrentTarget.transform.position);
-            animator.SetFloat("TargetDistance", TargetDistance);
-        }
-        else
-        {
-            FindTargetInVision();
-            TargetDistance = 1000f;
-            animator.SetFloat("TargetDistance", TargetDistance);
-        }
-    }
     public void SetNavAgentTarget(Transform target)
     {
         navAgent.SetDestination(target.position);
     }
-    public void FindTargetInVision()
+
+    public bool TargetInSight()
     {
-        foreach (var target in VisableTargetList)
-        {
-            ray = new Ray
-            {
-                origin = transform.position,
-                direction = transform.forward
-            };
-
-            if (Physics.Raycast(ray, out rayHit, UnitVisionRange, TargetMask))
-            {
-                //Debug.Log("RayHit " + rayHit.collider.name);
-                CurrentTarget = rayHit.collider.gameObject.transform;
-                Debug.Log("Current Target Set " + CurrentTarget);
-                //Debug.Log("Found Target!");
-                animator.SetBool("HasTarget", true);
-                transform.LookAt(CurrentTarget);
-                Debug.DrawRay(ray.origin, ray.direction * visionCollider.radius, Color.red);
-            }
-            else
-            {
-                animator.SetBool("HasTarget", false);
-                Debug.DrawRay(ray.origin, ray.direction * visionCollider.radius, Color.green);
-            }
-        }
-
-    }
-
-    public void FindTargetsInArea()
-    {
-        VisableTargetList.Clear();
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, UnitVisionRadius, TargetMask);
-
         int i = 0;
         while (i < hitColliders.Length)
         {
-
+            transform.LookAt(hitColliders[i].transform);
             ray.origin = transform.position;
             ray.direction = transform.forward;
             //Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
@@ -115,11 +65,21 @@ public class UnitBrain : MonoBehaviour
                 Debug.DrawRay(ray.origin, ray.direction * UnitVisionRange, Color.red);
                 CurrentTarget = rayHit.collider.gameObject.transform;
                 //Debug.Log("Found Target!");
+                Debug.Log("Current Target Set " + CurrentTarget);
+                animator.SetBool("HasTarget", true);
+                transform.LookAt(CurrentTarget);
+                if (CurrentTarget != null)
+                    return true;
             }
             i++;
         }
+        CurrentTarget = null;
+        return false;
 
     }
+
+
+
     void InitWayPath()
     {
         WayPointLane[] unitLanes = FindObjectsOfType<WayPointLane>();
@@ -209,27 +169,4 @@ public class UnitBrain : MonoBehaviour
         Debug.Log("I have LOST sight of an Enemy!");
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            FindTargetsInArea();
-        }
-
-    }
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (other.gameObject.tag == "Player")
-    //    {
-    //        FindTargetsInArea();
-    //    }
-    //}
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            Debug.Log("I sense nothing is near...!");
-            VisableTargetList.Remove(other.transform);
-        }
-    }
 }
