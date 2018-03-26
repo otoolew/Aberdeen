@@ -54,10 +54,12 @@ public class Node : MonoBehaviour
     public virtual void OnTriggerEnter(Collider other)
     {
         var agent = other.gameObject.GetComponent<UnitBrain>();
+         
         if (agent != null)
         {
+            Debug.Log(agent.UnitName + " Entered the WayPoint");
             agent.GetNextNode(this);
-        }
+        }       
     }
 
 #if UNITY_EDITOR

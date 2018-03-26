@@ -29,7 +29,7 @@ public class AttackState : UnitBaseFSM {
             if (unitBrain.TargetDistance <= unitBrain.UnitAttackRange)
             {
                 animator.SetBool("HasTarget", true);
-                unitObject.transform.LookAt(unitBrain.CurrentTarget);
+                //unitObject.transform.LookAt(unitBrain.CurrentTarget);
 
                 if (timer >= cooldown)
                 {

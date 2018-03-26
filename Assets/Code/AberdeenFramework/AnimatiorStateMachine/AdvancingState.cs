@@ -19,7 +19,7 @@ public class AdvancingState : UnitBaseFSM
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {   // WayPoint Check
         base.OnStateUpdate(animator, stateInfo, layerIndex);
-
+        
         navAgent.SetDestination(unitBrain.CurrentNode.transform.position);
         navAgent.isStopped = false;
         if (navAgent.remainingDistance < navAgent.stoppingDistance)

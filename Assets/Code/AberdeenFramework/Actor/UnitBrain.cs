@@ -10,7 +10,7 @@ using UnityEngine.Events;
 /// </summary>
 public class UnitBrain : MonoBehaviour
 {
-    public string UnitName { get; set; }
+    public string UnitName;
     private Animator animator;
     private NavMeshAgent navAgent;
     private UnitWeaponBehavior unitWeapon;
@@ -65,7 +65,7 @@ public class UnitBrain : MonoBehaviour
                 Debug.DrawRay(ray.origin, ray.direction * UnitVisionRange, Color.red);
                 CurrentTarget = rayHit.collider.gameObject.transform;
                 //Debug.Log("Found Target!");
-                Debug.Log("Current Target Set " + CurrentTarget);
+                //Debug.Log("Current Target Set " + CurrentTarget);
                 animator.SetBool("HasTarget", true);
                 transform.LookAt(CurrentTarget);
                 if (CurrentTarget != null)

@@ -28,13 +28,13 @@ public class UnitBaseFSM : StateMachineBehaviour
     {
         if (unitBrain.TargetInSight())
         {
-            Debug.Log("Target Insight!");
-            animator.transform.LookAt(unitBrain.CurrentTarget);
+            //Debug.Log("Target Insight!");
+            //animator.transform.LookAt(unitBrain.CurrentTarget);
             animator.SetBool("HasTarget", true);
         }
         if (unitTarget != null)
         {
-            animator.transform.LookAt(unitTarget);
+            //animator.transform.LookAt(unitBrain.CurrentTarget);
             unitBrain.TargetDistance = Vector3.Distance(unitTarget.position, unitTarget.transform.position);
             animator.SetFloat("TargetDistance", unitBrain.TargetDistance);
         }
