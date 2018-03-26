@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitWeaponBehavior : MonoBehaviour
-{
+public class PlayerWeaponBehavior : MonoBehaviour {
     public float Damage;
     public float Range;
     public float Rate;
     public float EffectDuration;
+    private float coolDownTimer;
+
     public UnityEngine.Transform FirePoint;
     LineRenderer lineRenderer;
     Ray ray;
@@ -21,8 +22,23 @@ public class UnitWeaponBehavior : MonoBehaviour
         lineRenderer = FirePoint.GetComponent<LineRenderer>();
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        coolDownTimer += Time.deltaTime;
+        bool coolDownComplete = (coolDownTimer > Rate);
+        if (coolDownComplete)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                FireWeapon();
+            }
+        }
+    }
+
     public void FireWeapon()
     {
+        coolDownTimer = 0;
         lineRenderer.enabled = true;
         lineRenderer.SetPosition(0, FirePoint.transform.position);
         ray.origin = FirePoint.transform.position;
@@ -30,7 +46,7 @@ public class UnitWeaponBehavior : MonoBehaviour
         StartCoroutine(ShotEffect());
         if (Physics.Raycast(ray, out rayHit, Range, HitMask))
         {
-            //Debug.Log("RayHit " + rayHit.collider.name);
+            Debug.Log("RayHit " + rayHit.collider.name);
             lineRenderer.SetPosition(1, rayHit.point);
         }
         else
@@ -41,7 +57,6 @@ public class UnitWeaponBehavior : MonoBehaviour
 
     private IEnumerator ShotEffect()
     {
-
         //Turn on our line renderer
         lineRenderer.enabled = true;
         //Wait for .07 seconds

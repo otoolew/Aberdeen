@@ -18,7 +18,7 @@ public class ParticleMenu : MonoBehaviour {
 	private GameObject currentGO;
 
 	// where to spawn prefabs 
-	public Transform spawnLocation;
+	public UnityEngine.Transform spawnLocation;
 
 	// references to the UI Text components
 	public Text title;

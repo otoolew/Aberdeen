@@ -5,7 +5,7 @@ public class TeamSetupDefinition {
 
     public string Name;
 
-    public Transform Location;
+    public UnityEngine.Transform Location;
 
     public List<GameObject> StartingUnits = new List<GameObject>();
 

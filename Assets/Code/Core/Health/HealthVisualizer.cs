@@ -16,12 +16,12 @@ namespace Core.Health
 		/// <summary>
 		/// The object whose X-scale we change to decrease the health bar. Should have a default uniform scale
 		/// </summary>
-		public Transform healthBar;
+		public UnityEngine.Transform healthBar;
 		
 		/// <summary>
 		/// The object whose X-scale we change to increase the health bar background. Should have a default uniform scale
 		/// </summary>
-		public Transform backgroundBar;
+		public UnityEngine.Transform backgroundBar;
 
 		/// <summary>
 		/// Whether to show this health bar even when it is full
@@ -31,7 +31,7 @@ namespace Core.Health
 		/// <summary>
 		/// Camera to face the visualization at
 		/// </summary>
-		protected Transform m_CameraToFace;
+		protected UnityEngine.Transform m_CameraToFace;
 
 		/// <summary>
 		/// Damageable whose health is visualized

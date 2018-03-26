@@ -11,7 +11,7 @@ namespace ActionGameFramework.Health
 		/// <summary>
 		/// The transform that will be targeted
 		/// </summary>
-		public Transform targetTransform;
+		public UnityEngine.Transform targetTransform;
 
 		/// <summary>
 		/// The position of the object

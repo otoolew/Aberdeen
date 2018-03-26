@@ -571,8 +571,8 @@ namespace RPGCharacterAnims{
 		/// Movement based off camera facing.
 		/// </summary>
 		void CameraRelativeInput(){
-			//Camera relative movement.
-			Transform cameraTransform = sceneCamera.transform;
+            //Camera relative movement.
+            UnityEngine.Transform cameraTransform = sceneCamera.transform;
 			//Forward vector relative to the camera along the x-z plane   
 			Vector3 forward = cameraTransform.TransformDirection(Vector3.forward);
 			forward.y = 0;

@@ -14,7 +14,7 @@ public class AreaMeshCreator : MonoBehaviour {
     [HideInInspector]
     public MeshObject meshObject;
 
-    public Transform outSidePointsParent;
+    public UnityEngine.Transform outSidePointsParent;
 
     /// <summary>
     /// The parent transform of points in the mesh
@@ -41,11 +41,11 @@ public class AreaMeshCreator : MonoBehaviour {
     /// <summary>
     /// Gets an array of the Transforms of points in this mesh - only used by editor script
     /// </summary>
-    public Transform[] pointsTransforms
+    public UnityEngine.Transform[] pointsTransforms
     {
         get
         {
-            Transform[] childern = new Transform[pointsCenter.childCount];
+            UnityEngine.Transform[] childern = new UnityEngine.Transform[pointsCenter.childCount];
             int length = pointsCenter.childCount;
             for (int i = 0; i < length; i++)
             {
@@ -83,14 +83,14 @@ public class AreaMeshCreator : MonoBehaviour {
         int length = pointsCenter.childCount;
         for (int i = 0; i < length; i++)
         {
-            Transform t = pointsCenter.GetChild(i);
+            UnityEngine.Transform t = pointsCenter.GetChild(i);
             Vector3 position = t.localPosition;
             position.z = 0;
             t.localPosition = position;
         }
     }
 
-    List<Vector3> GetChildrenPositions(Transform parent)
+    List<Vector3> GetChildrenPositions(UnityEngine.Transform parent)
     {
         int length = parent.childCount;
         List<Vector3> points = new List<Vector3>();

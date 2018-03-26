@@ -8,19 +8,19 @@ namespace Core.StateMachine
     public class StateController : MonoBehaviour
     {
         public State currentState;
-        public Transform VisionPoint;
+        public UnityEngine.Transform VisionPoint;
         public State remainState;
         public float UnitVisionRange;
         public float UnitVisionRadius;
         public float UnitScanSpeed;
         public StringVariable teamName;
         public UnitWeaponBehavior unitWeapon;
-        public List<Transform> wayPointList;
-        public Transform chaseTarget;
+        public List<UnityEngine.Transform> wayPointList;
+        public UnityEngine.Transform chaseTarget;
         public int nextWayPoint;
         public float stateTimeElapsed;
         public LayerMask targetMask;
-        public Transform attackTarget;
+        public UnityEngine.Transform attackTarget;
         [HideInInspector] public NavMeshAgent navMeshAgent;
         [HideInInspector] public Animator animator;
         private void Start()

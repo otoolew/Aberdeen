@@ -8,7 +8,7 @@ public class RaycastWeaponTrigger : MonoBehaviour {
     [HideInInspector] public int weaponDamage = 1;                         
     [HideInInspector] public float weaponRange = 50f;                   
     [HideInInspector] public LineRenderer lineRenderer;                    
-    public Transform FirePoint;                                              
+    public UnityEngine.Transform FirePoint;                                              
     public LayerMask LayerRayMask;
     float timer;
     float effectDuration = 1f;

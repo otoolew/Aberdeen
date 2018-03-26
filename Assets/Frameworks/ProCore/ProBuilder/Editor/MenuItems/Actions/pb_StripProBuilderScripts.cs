@@ -33,10 +33,10 @@ namespace ProBuilder2.Actions
 			if(!EditorUtility.DisplayDialog("Strip ProBuilder Scripts", "This will remove all ProBuilder scripts on the selected objects.  You will no longer be able to edit these objects.  There is no undo, please exercise caution!\n\nAre you sure you want to do this?", "Okay", "Cancel"))
 				return;
 
-			foreach(Transform t in Selection.transforms)
+			foreach(UnityEngine.Transform t in Selection.transforms)
 			{
 				foreach(pb_Object pb in t.GetComponentsInChildren<pb_Object>(true))
-					DoStrip(pb);
+                    DoStrip(pb);
 			}
 		}
 

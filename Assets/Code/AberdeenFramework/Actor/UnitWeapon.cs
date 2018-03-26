@@ -29,7 +29,7 @@ public class UnitWeapon : MonoBehaviour {
         bool coolDownComplete = (Time.time > nextReadyTime);
         if (coolDownComplete)
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetMouseButtonDown(0))
             {
                 FireWeapon();
             }

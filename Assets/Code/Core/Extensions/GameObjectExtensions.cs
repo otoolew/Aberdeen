@@ -13,8 +13,8 @@ namespace Core.Extensions
 		{
 			gameObject.layer = layer;
 
-			// Non recursive, non allocating traversal
-			Transform goTransform = gameObject.transform;
+            // Non recursive, non allocating traversal
+            UnityEngine.Transform goTransform = gameObject.transform;
 			if (goTransform.childCount > 0)
 			{
 				WalkHeirarchyAndSetLayer(goTransform, layer);
@@ -27,14 +27,14 @@ namespace Core.Extensions
 		/// </summary>
 		/// <param name="root">The root object to start our search from</param>
 		/// <param name="layer">The layer to set the game object too</param>
-		static void WalkHeirarchyAndSetLayer([NotNull] Transform root, int layer)
+		static void WalkHeirarchyAndSetLayer([NotNull] UnityEngine.Transform root, int layer)
 		{
 			if (root.childCount == 0)
 			{
 				throw new InvalidOperationException("Root transform has no children");
 			}
 
-			Transform workingTransform = root.GetChild(0);
+            UnityEngine.Transform workingTransform = root.GetChild(0);
 
 			// Work until we get back to the root
 			while (workingTransform != root)
@@ -71,9 +71,9 @@ namespace Core.Extensions
 		/// </summary>
 		/// <param name="transform">The transform whose siblings we're looking for</param>
 		/// <returns>True if we had a sibling. <paramref name="transform"/> will now refer to it.</returns>
-		static bool TryGetNextSibling([NotNull] ref Transform transform)
+		static bool TryGetNextSibling([NotNull] ref UnityEngine.Transform transform)
 		{
-			Transform parent = transform.parent;
+            UnityEngine.Transform parent = transform.parent;
 			int siblingIndex = transform.GetSiblingIndex();
 
 			// Get siblings if we don't have children

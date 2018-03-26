@@ -3,10 +3,10 @@ using System.Collections;
 
 public class IKHands : MonoBehaviour {
 
-	public Transform leftHandObj;
-	public Transform rightHandObj;
-	public Transform attachLeft;
-	public Transform attachRight;
+	public UnityEngine.Transform leftHandObj;
+	public UnityEngine.Transform rightHandObj;
+	public UnityEngine.Transform attachLeft;
+	public UnityEngine.Transform attachRight;
 
 	public float leftHandPositionWeight;
 	public float leftHandRotationWeight;

@@ -13,8 +13,8 @@ namespace ProBuilder2.Examples
 	public class IcoBumpin : MonoBehaviour
 	{
 		pb_Object ico;			// A reference to the icosphere pb_Object component
-		Mesh icoMesh;			// A reference to the icosphere mesh (cached because we access the vertex array every frame)
-		Transform icoTransform;	// A reference to the icosphere transform component.  Cached because I can't remember if GameObject.transform is still a performance drain :|
+		Mesh icoMesh;           // A reference to the icosphere mesh (cached because we access the vertex array every frame)
+        UnityEngine.Transform icoTransform;	// A reference to the icosphere transform component.  Cached because I can't remember if GameObject.transform is still a performance drain :|
 		AudioSource audioSource;// Cached reference to the audiosource.
 
 		/**

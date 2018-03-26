@@ -12,7 +12,7 @@ public class ViewField : MonoBehaviour {
     public LayerMask obstacleMask;
 
     [HideInInspector]
-    public List<Transform> visibleTargets = new List<Transform>();
+    public List<UnityEngine.Transform> visibleTargets = new List<UnityEngine.Transform>();
 
     public float meshResolution;
     public int edgeResolveIterations;
@@ -52,7 +52,7 @@ public class ViewField : MonoBehaviour {
 
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
-            Transform target = targetsInViewRadius[i].transform;
+            UnityEngine.Transform target = targetsInViewRadius[i].transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
             if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
             {
