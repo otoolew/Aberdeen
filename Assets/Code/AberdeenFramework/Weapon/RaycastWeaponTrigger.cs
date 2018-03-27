@@ -30,7 +30,7 @@ public class RaycastWeaponTrigger : MonoBehaviour {
         StartCoroutine(ShotEffect());
         if (Physics.Raycast(ray, out rayHit, weaponRange, LayerRayMask))
         {
-            //Debug.Log("RayHit " + rayHit.collider.name);
+            Debug.Log("RayHit " + rayHit.collider.name);
             lineRenderer.SetPosition(1, rayHit.point);
         }
         else

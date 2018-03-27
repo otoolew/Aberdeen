@@ -9,7 +9,7 @@ public class AdvancingState : UnitBaseFSM
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
-        Debug.Log("Enter Advancing State");
+        //Debug.Log("Enter Advancing State");
         unitHUD.ChangeText("Advancing State!");
         navAgent.isStopped = false;
 

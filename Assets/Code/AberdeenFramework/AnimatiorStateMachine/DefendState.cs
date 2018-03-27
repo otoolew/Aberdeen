@@ -8,7 +8,7 @@ public class DefendState : UnitBaseFSM
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
-        Debug.Log("Enter Defend State");
+        //Debug.Log("Enter Defend State");
         unitHUD.ChangeText("Defending State!");
         navAgent.SetDestination(animator.transform.position);
     }

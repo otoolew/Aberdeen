@@ -59,10 +59,10 @@ public class UnitBrain : MonoBehaviour
             ray.origin = transform.position;
             ray.direction = transform.forward;
             //Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
-            Debug.DrawRay(ray.origin, ray.direction * UnitVisionRange, Color.green);
+            //Debug.DrawRay(ray.origin, ray.direction * UnitVisionRange, Color.green);
             if (Physics.Raycast(ray, out rayHit, UnitVisionRange, TargetMask))
             {
-                Debug.DrawRay(ray.origin, ray.direction * UnitVisionRange, Color.red);
+                //Debug.DrawRay(ray.origin, ray.direction * UnitVisionRange, Color.red);
                 CurrentTarget = rayHit.collider.gameObject.transform;
                 //Debug.Log("Found Target!");
                 //Debug.Log("Current Target Set " + CurrentTarget);
