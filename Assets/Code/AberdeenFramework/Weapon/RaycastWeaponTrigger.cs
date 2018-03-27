@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RaycastWeaponTrigger : MonoBehaviour {
-    Ray ray;
+    //Ray ray;
     RaycastHit rayHit;
     [HideInInspector] public int weaponDamage = 1;                         
     [HideInInspector] public float weaponRange = 50f;                   
@@ -18,15 +18,18 @@ public class RaycastWeaponTrigger : MonoBehaviour {
     public void Initialize()
     {
         //Get and store a reference to our LineRenderer component
-        lineRenderer = FirePoint.GetComponent<LineRenderer>();
+        lineRenderer = FirePoint.GetComponentInChildren<LineRenderer>();
     }
 
     public void Fire()
     {
         lineRenderer.enabled = true;
         lineRenderer.SetPosition(0, FirePoint.transform.position);
-        ray.origin = FirePoint.transform.position;
-        ray.direction = FirePoint.transform.forward;
+        Ray ray = new Ray()
+        {
+            origin = FirePoint.transform.position,
+            direction = FirePoint.transform.forward
+        };
         StartCoroutine(ShotEffect());
         if (Physics.Raycast(ray, out rayHit, weaponRange, LayerRayMask))
         {

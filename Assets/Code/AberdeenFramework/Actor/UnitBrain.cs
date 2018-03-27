@@ -64,6 +64,8 @@ public class UnitBrain : MonoBehaviour
             {
                 //Debug.DrawRay(ray.origin, ray.direction * UnitVisionRange, Color.red);
                 CurrentTarget = rayHit.collider.gameObject.transform;
+
+
                 //Debug.Log("Found Target!");
                 //Debug.Log("Current Target Set " + CurrentTarget);
                 animator.SetBool("HasTarget", true);

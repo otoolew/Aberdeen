@@ -9,7 +9,7 @@ public class DefendState : UnitBaseFSM
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
         //Debug.Log("Enter Defend State");
-        unitHUD.ChangeText("Defending State!");
+        //unitHUD.ChangeText("Defending State!");
         navAgent.SetDestination(animator.transform.position);
     }
 

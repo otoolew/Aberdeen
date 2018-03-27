@@ -57,7 +57,7 @@ public class Node : MonoBehaviour
          
         if (agent != null)
         {
-            Debug.Log(agent.UnitName + " Entered the WayPoint");
+            //Debug.Log(agent.UnitName + " Entered the WayPoint");
             agent.GetNextNode(this);
         }       
     }

@@ -20,7 +20,7 @@ public class UnitWeapon : MonoBehaviour {
     {
         weapon = equipedWeapon;
     
-        coolDownDuration = weapon.WeaponCoolDown;
+        coolDownDuration = weapon.WeaponCoolDown;// Why am I doing this?
         weapon.Initialize(weaponHolder);
     }
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class UnitWeapon : MonoBehaviour {
         bool coolDownComplete = (Time.time > nextReadyTime);
         if (coolDownComplete)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.F))
             {
                 FireWeapon();
             }

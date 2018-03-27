@@ -10,7 +10,7 @@ public class AdvancingState : UnitBaseFSM
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
         //Debug.Log("Enter Advancing State");
-        unitHUD.ChangeText("Advancing State!");
+        //unitHUD.ChangeText("Advancing State!");
         navAgent.isStopped = false;
 
     }
