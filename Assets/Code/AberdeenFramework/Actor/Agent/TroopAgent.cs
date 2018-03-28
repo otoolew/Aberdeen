@@ -1,0 +1,426 @@
+﻿using ActionGameFramework.Health;
+using Core.Utilities;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+[RequireComponent(typeof(NavMeshAgent)), RequireComponent(typeof(UnitWeaponBehavior))]
+public class TroopAgent : Targetable
+{
+    /// <summary>
+    /// A means of keeping track of the agent along its path
+    /// </summary>
+    public enum State
+    {
+        /// <summary>
+        /// When the agent is on a path that is not blocked
+        /// </summary>
+        OnCompletePath,
+
+        /// <summary>
+        /// When the agent is on a path is blocked
+        /// </summary>
+        OnPartialPath,
+
+        /// <summary>
+        /// When the agent has reached the end of a blocked path
+        /// </summary>
+        Attacking,
+
+        /// <summary>
+        /// For flying agents, when they move over obstacles
+        /// </summary>
+        PushingThrough,
+
+        /// <summary>
+        /// When the agent has completed their path
+        /// </summary>
+        PathComplete
+    }
+
+    /// <summary>
+    /// Event fired when agent reached its final node
+    /// </summary>
+    public event Action<Node> destinationReached;
+
+    /// <summary>
+    /// Position offset for an applied affect
+    /// </summary>
+    public Vector3 appliedEffectOffset = Vector3.zero;
+
+    /// <summary>
+    /// Scale adjustment for an applied affect
+    /// </summary>
+    public float appliedEffectScale = 1;
+
+    /// <summary>
+    /// The NavMeshAgent component attached to this
+    /// </summary>
+    protected NavMeshAgent m_NavMeshAgent;
+
+    /// <summary>
+    /// The Current node that the agent must navigate to
+    /// </summary>
+    protected Node m_CurrentNode;
+
+    /// <summary>
+    /// Reference to the level manager
+    /// </summary>
+    //protected LevelManager m_LevelManager;
+
+    /// <summary>
+    /// Stores the Destination to the next node so we don't need to get new random positions every time
+    /// </summary>
+    protected Vector3 m_Destination;
+
+    /// <summary>
+    /// Gets the attached nav mesh agent velocity
+    /// </summary>
+    public override Vector3 velocity
+    {
+        get { return m_NavMeshAgent.velocity; }
+    }
+
+    /// <summary>
+    /// The current state of the agent along the path
+    /// </summary>
+    public State state { get; protected set; }
+
+    /// <summary>
+    /// Tower to target
+    /// </summary>
+    protected GameObject m_TargetTroop;
+    /// <summary>
+    /// Accessor to <see cref="m_NavMeshAgent"/>
+    /// </summary>
+    public NavMeshAgent navMeshNavMeshAgent
+    {
+        get { return m_NavMeshAgent; }
+        set { m_NavMeshAgent = value; }
+    }
+
+    /// <summary>
+    /// The area mask of the attached nav mesh agent
+    /// </summary>
+    public int navMeshMask
+    {
+        get { return m_NavMeshAgent.areaMask; }
+    }
+
+    /// <summary>
+    /// Gets this agent's original movement speed
+    /// </summary>
+    public float originalMovementSpeed { get; private set; }
+
+    /// <summary>
+    /// Checks if the path is blocked
+    /// </summary>
+    /// <value>
+    /// The status of the agent's path
+    /// </value>
+    protected bool isPathBlocked
+    {
+        get { return m_NavMeshAgent.pathStatus == NavMeshPathStatus.PathPartial; }
+    }
+
+    /// <summary>
+    /// Is the Agent close enough to its destination?
+    /// </summary>
+    protected bool isAtDestination
+    {
+        get { return navMeshNavMeshAgent.remainingDistance <= navMeshNavMeshAgent.stoppingDistance; }
+    }
+
+    /// <summary>
+    /// Is this agent currently engaging a tower?
+    /// </summary>
+    protected bool m_IsAttacking;
+    /// <summary>
+    /// Sets the node to navigate to
+    /// </summary>
+    /// <param name="node">The node that the agent will navigate to</param>
+    public void SetNode(Node node)
+    {
+        m_CurrentNode = node;
+    }
+
+    /// <summary>
+    /// Stops the navMeshAgent and attempts to return to pool
+    /// </summary>
+    public override void Remove()
+    {
+        base.Remove();
+        //m_LevelManager.DecrementNumberOfEnemies();
+        if (m_NavMeshAgent.enabled)
+        {
+            m_NavMeshAgent.isStopped = true;
+        }
+        m_NavMeshAgent.enabled = false;
+
+        Poolable.TryPool(gameObject);
+    }
+
+    /// <summary>	
+    /// Setup all the necessary parameters for this agent from configuration data
+    /// </summary>
+    public void Initialize()
+    {
+        ResetPositionData();
+        LazyLoad();
+        configuration.SetHealth(configuration.maxHealth);
+        state = isPathBlocked ? State.OnPartialPath : State.OnCompletePath;
+
+        m_NavMeshAgent.enabled = true;
+        m_NavMeshAgent.isStopped = false;
+
+        //m_LevelManager.IncrementNumberOfEnemies();
+    }
+
+    /// <summary>
+    /// Finds the next node in the path
+    /// </summary>
+    public void GetNextNode(Node currentlyEnteredNode)
+    {
+        // Don't do anything if the calling node is the same as the m_CurrentNode
+        if (m_CurrentNode != currentlyEnteredNode)
+        {
+            return;
+        }
+        if (m_CurrentNode == null)
+        {
+            Debug.LogError("Cannot find current node");
+            return;
+        }
+
+        Node nextNode = m_CurrentNode.GetNextNode();
+        if (nextNode == null)
+        {
+            if (m_NavMeshAgent.enabled)
+            {
+                m_NavMeshAgent.isStopped = true;
+            }
+            HandleDestinationReached();
+            return;
+        }
+
+        Debug.Assert(nextNode != m_CurrentNode);
+        SetNode(nextNode);
+        MoveToNode();
+    }
+
+    /// <summary>
+    /// Moves the agent to a position in the <see cref="Agent.m_CurrentNode" />
+    /// </summary>
+    public virtual void MoveToNode()
+    {
+        Vector3 nodePosition = m_CurrentNode.GetRandomPointInNodeArea();
+        nodePosition.y = m_CurrentNode.transform.position.y;
+        m_Destination = nodePosition;
+        NavigateTo(m_Destination);
+    }
+
+    /// <summary>
+    /// The logic for what happens when the destination is reached
+    /// </summary>
+    public virtual void HandleDestinationReached()
+    {
+        state = State.PathComplete;
+        if (destinationReached != null)
+        {
+            destinationReached(m_CurrentNode);
+        }
+    }
+
+    /// <summary>
+    /// Lazy Load, if necesaary and ensure the NavMeshAgent is disabled
+    /// </summary>
+    protected override void Awake()
+    {
+        base.Awake();
+        LazyLoad();
+        m_NavMeshAgent.enabled = false;
+    }
+
+    /// <summary>
+    /// Updates the agent in its different states, 
+    /// Reset destination when path is stale
+    /// </summary>
+    protected void Update()
+    {
+        // Update behaviour for different states
+        PathUpdate();
+
+        // If the path becomes invalid, repath the agent to the destination
+        bool validStalePath = m_NavMeshAgent.isOnNavMesh && m_NavMeshAgent.enabled &&
+                              (!m_NavMeshAgent.hasPath && !m_NavMeshAgent.pathPending);
+        if (validStalePath)
+        {
+            // Compare against squared stopping distance on agent.
+            // We intentionally do not pre-square this value so that it can be changed at runtime dynamically
+            float squareStoppingDistance = m_NavMeshAgent.stoppingDistance * m_NavMeshAgent.stoppingDistance;
+            if (Vector3.SqrMagnitude(m_Destination - transform.position) < squareStoppingDistance &&
+                m_CurrentNode.GetNextNode() != null)
+            {
+                // Proceed if we're at our destination
+                GetNextNode(m_CurrentNode);
+            }
+            else
+            {
+                // Otherwise try repath
+                m_NavMeshAgent.SetDestination(m_Destination);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Set the NavMeshAgent's destination
+    /// </summary>
+    /// <param name="nextPoint">The position to navigate to</param>
+    protected void NavigateTo(Vector3 nextPoint)
+    {
+        LazyLoad();
+        if (m_NavMeshAgent.isOnNavMesh)
+        {
+            m_NavMeshAgent.SetDestination(nextPoint);
+        }
+    }
+
+    /// <summary>
+    /// This is a lazy way of caching several components utilised by the Agent
+    /// </summary>
+    protected void LazyLoad()
+    {
+        Debug.Log("LazyLoading");
+        if (m_NavMeshAgent == null)
+        {
+            m_NavMeshAgent = GetComponent<NavMeshAgent>();
+            originalMovementSpeed = m_NavMeshAgent.speed;
+        }
+        //if (m_LevelManager == null)
+        //{
+        //    m_LevelManager = LevelManager.instance;
+        //}
+    }
+
+    /// <summary>
+    /// Move along the path, change to <see cref="State.OnPartialPath" />
+    /// </summary>
+    protected void OnCompletePathUpdate()
+    {
+        if (isPathBlocked)
+        {
+            state = State.OnPartialPath;
+        }
+    }
+
+    /// <summary>
+    /// Peforms the relevant path update
+    /// </summary>
+    protected void PathUpdate()
+    {
+        switch (state)
+        {
+            case State.OnCompletePath:
+                OnCompletePathUpdate();
+                break;
+            case State.OnPartialPath:
+                OnPartialPathUpdate();
+                break;
+            case State.Attacking:
+                //AttackingUpdate();
+                break;
+        }
+        Debug.Log("PathUpdate");
+    }
+
+    /// <summary>
+    /// The behaviour for when the agent has been blocked
+    /// </summary>
+    protected void OnPartialPathUpdate()
+    {
+        Debug.Log("OnPartialPathUpdate");
+        if (!isPathBlocked)
+        {
+            state = State.OnCompletePath;
+            return;
+        }
+
+        //// Check for closest tower at the end of the partial path
+        //m_AttackAffector.towerTargetter.transform.position = m_NavMeshAgent.pathEndPosition;
+        //Tower tower = GetClosestTower();
+        //if (tower != m_TargetTower)
+        //{
+        //    // if the current target is to be replaced, unsubscribe from removed event
+        //    if (m_TargetTower != null)
+        //    {
+        //        m_TargetTower.removed -= OnTargetTowerDestroyed;
+        //    }
+
+        //    // assign target, can be null
+        //    m_TargetTower = tower;
+
+        //    // if new target found subscribe to removed event
+        //    if (m_TargetTower != null)
+        //    {
+        //        m_TargetTower.removed += OnTargetTowerDestroyed;
+        //    }
+        //}
+        //if (m_TargetTower == null)
+        //{
+        //    return;
+        //}
+        //float distanceToTower = Vector3.Distance(transform.position, m_TargetTower.transform.position);
+        //if (!(distanceToTower < m_AttackAffector.towerTargetter.effectRadius))
+        //{
+        //    return;
+        //}
+        //if (!m_AttackAffector.enabled)
+        //{
+        //    m_AttackAffector.towerTargetter.transform.position = transform.position;
+        //    m_AttackAffector.enabled = true;
+        //}
+        state = State.Attacking;
+        m_NavMeshAgent.isStopped = true;
+    }
+    /// <summary>
+    /// The agent attacks until the path is available again or it has killed the target tower
+    /// </summary>
+    protected void AttackingUpdate()
+    {
+        if (m_TargetTroop != null)
+        {
+            return;
+        }
+        MoveToNode();
+
+        // Resume path once blocking has been cleared
+        m_IsAttacking = false;
+        m_NavMeshAgent.isStopped = false;
+
+        state = isPathBlocked ? State.OnPartialPath : State.OnCompletePath;
+
+    }
+
+#if UNITY_EDITOR
+    /// <summary>
+    /// Draw the agent's path
+    /// </summary>
+    protected void OnDrawGizmosSelected()
+    {
+        if (m_NavMeshAgent != null)
+        {
+            Vector3[] pathPoints = m_NavMeshAgent.path.corners;
+            int count = pathPoints.Length;
+            for (int i = 0; i < count - 1; i++)
+            {
+                Vector3 from = pathPoints[i];
+                Vector3 to = pathPoints[i + 1];
+                Gizmos.DrawLine(from, to);
+            }
+            Gizmos.DrawWireSphere(m_NavMeshAgent.destination, 0.2f);
+        }
+    }
+#endif
+}

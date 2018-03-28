@@ -10,7 +10,7 @@ public class ShootState : UnitBaseFSM {
         base.OnStateEnter(animator, stateInfo, layerIndex);
         //Debug.Log("Enter Attack State");
         unitWeapon.FireWeapon();
-        unitHUD.ChangeText("Shooting State!");
+        //unitHUD.ChangeText("Shooting State!");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

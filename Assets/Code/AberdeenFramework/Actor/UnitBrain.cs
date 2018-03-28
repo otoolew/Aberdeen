@@ -8,8 +8,10 @@ using UnityEngine.Events;
 /// <summary>
 /// UnitBrain Class controls unit logic
 /// </summary>
+[RequireComponent(typeof(NavMeshAgent))]
 public class UnitBrain : MonoBehaviour
 {
+
     public string UnitName;
     private Animator animator;
     private NavMeshAgent navAgent;
@@ -59,11 +61,13 @@ public class UnitBrain : MonoBehaviour
             ray.origin = transform.position;
             ray.direction = transform.forward;
             //Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
-            Debug.DrawRay(ray.origin, ray.direction * UnitVisionRange, Color.green);
+            //Debug.DrawRay(ray.origin, ray.direction * UnitVisionRange, Color.green);
             if (Physics.Raycast(ray, out rayHit, UnitVisionRange, TargetMask))
             {
-                Debug.DrawRay(ray.origin, ray.direction * UnitVisionRange, Color.red);
+                //Debug.DrawRay(ray.origin, ray.direction * UnitVisionRange, Color.red);
                 CurrentTarget = rayHit.collider.gameObject.transform;
+
+
                 //Debug.Log("Found Target!");
                 //Debug.Log("Current Target Set " + CurrentTarget);
                 animator.SetBool("HasTarget", true);
@@ -84,13 +88,13 @@ public class UnitBrain : MonoBehaviour
     {
         WayPointLane[] unitLanes = FindObjectsOfType<WayPointLane>();
 
-        //WayPoint[] waypoints = GameObject.FindObjectsOfType<WayPoint>();
         foreach (var item in unitLanes)
         {
             if (item.WayPointTeam.Value == TeamName.Value)
             {
                 UnitLane = item;
                 CurrentNode = UnitLane.StartingNode;
+                Destination = CurrentNode.GetRandomPointInNodeArea();
                 break;
             }
         }
@@ -153,7 +157,7 @@ public class UnitBrain : MonoBehaviour
     /// Set the NavMeshAgent's destination
     /// </summary>
     /// <param name="nextPoint">The position to navigate to</param>
-    protected virtual void NavigateTo(Vector3 nextPoint)
+    protected void NavigateTo(Vector3 nextPoint)
     {
         if (navAgent.isOnNavMesh)
         {

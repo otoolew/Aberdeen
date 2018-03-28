@@ -10,7 +10,7 @@ public class AttackState : UnitBaseFSM {
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
         //Debug.Log("Enter Attack State");
-        unitHUD.ChangeText("Attacking State!");
+        //unitHUD.ChangeText("Attacking State!");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

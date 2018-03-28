@@ -8,9 +8,9 @@ public class DefendState : UnitBaseFSM
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
-        Debug.Log("Enter Defend State");
-        unitHUD.ChangeText("Defending State!");
-        navAgent.SetDestination(animator.transform.position);
+        //Debug.Log("Enter Defend State");
+        //unitHUD.ChangeText("Defending State!");
+        navAgent.SetDestination(unitBrain.Destination);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
