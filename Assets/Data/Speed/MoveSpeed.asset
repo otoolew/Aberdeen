@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Name: MoveSpeed
   m_EditorClassIdentifier: 
   DeveloperDescription: Movement Speed
-  Value: 5
+  Value: 10
