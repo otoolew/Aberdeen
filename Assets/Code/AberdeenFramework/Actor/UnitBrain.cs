@@ -8,8 +8,39 @@ using UnityEngine.Events;
 /// <summary>
 /// UnitBrain Class controls unit logic
 /// </summary>
+[RequireComponent(typeof(NavMeshAgent))]
 public class UnitBrain : MonoBehaviour
 {
+    /// <summary>
+    /// A means of keeping track of the agent along its path
+    /// </summary>
+    public enum PathState
+    {
+        /// <summary>
+        /// When the agent is on a path that is not blocked
+        /// </summary>
+        OnCompletePath,
+
+        /// <summary>
+        /// When the agent is on a path is blocked
+        /// </summary>
+        OnPartialPath,
+
+        /// <summary>
+        /// When the agent has reached the end of a blocked path
+        /// </summary>
+        Attacking,
+
+        /// <summary>
+        /// For flying agents, when they move over obstacles
+        /// </summary>
+        PushingThrough,
+
+        /// <summary>
+        /// When the agent has completed their path
+        /// </summary>
+        PathComplete
+    }
     public string UnitName;
     private Animator animator;
     private NavMeshAgent navAgent;
@@ -18,6 +49,7 @@ public class UnitBrain : MonoBehaviour
     private Ray ray;
     private RaycastHit rayHit;
     private SphereCollider visionCollider;
+    public PathState pathState { get; protected set; }
     public List<Transform> VisableTargetList;
     public WayPointLane UnitLane;
     public Transform CurrentTarget;

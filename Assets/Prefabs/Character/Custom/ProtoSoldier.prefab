@@ -320,6 +320,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1587388954000720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4699535863905404}
+  - component: {fileID: 114060525986850780}
+  - component: {fileID: 135299449898769160}
+  m_Layer: 10
+  m_Name: Targetter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1596259069092128
 GameObject:
   m_ObjectHideFlags: 1
@@ -407,8 +424,8 @@ GameObject:
   - component: {fileID: 54050524264454876}
   - component: {fileID: 195291094615655972}
   - component: {fileID: 136986825085445298}
-  - component: {fileID: 114877692787095164}
   - component: {fileID: 114061060270067230}
+  - component: {fileID: 114900290298857374}
   m_Layer: 10
   m_Name: ProtoSoldier
   m_TagString: Troop
@@ -852,6 +869,19 @@ Transform:
   m_Father: {fileID: 4376979119176654}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4699535863905404
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1587388954000720}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4974452713538088}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4732868913526732
 Transform:
   m_ObjectHideFlags: 1
@@ -1033,6 +1063,7 @@ Transform:
   - {fileID: 4936260261261880}
   - {fileID: 224928887041913968}
   - {fileID: 4795450452285122}
+  - {fileID: 4699535863905404}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1136,6 +1167,25 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114060525986850780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1587388954000720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8a6868ebda9b44b81050febbb57855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turret: {fileID: 0}
+  turretXRotationRange: {x: 0, y: 359}
+  onlyYTurretRotation: 0
+  searchRate: 0
+  idleRotationSpeed: 39
+  idleCorrectionTime: 2
+  attachedCollider: {fileID: 0}
+  idleWaitTime: 2
 --- !u!114 &114061060270067230
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1254,7 +1304,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114877692787095164
+--- !u!114 &114900290298857374
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1262,31 +1312,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1762219093412988}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a9739b35d201b34b9a13037d48bf048, type: 3}
+  m_Script: {fileID: 11500000, guid: c33ac42a5d080124e8aecc15c7e17102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitName: Proto Soldier
-  VisableTargetList: []
-  UnitLane: {fileID: 0}
-  CurrentTarget: {fileID: 0}
-  CurrentNode: {fileID: 0}
-  Destination: {x: 0, y: 0, z: 0}
-  TargetDistance: 0
-  TargetMask:
-    serializedVersion: 2
-    m_Bits: 256
-  UnitVisionRange: 30
-  UnitVisionRadius: 10
-  UnitAttackRange: 15
-  TeamName: {fileID: 11400000, guid: a72ae2befa3a32d48b0330aee3bedb5b, type: 2}
-  BlockingMask:
-    serializedVersion: 2
-    m_Bits: 0
-  OnEnemySighted:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  configuration:
+    maxHealth: 0
+    startingHealth: 0
+    alignment:
+      unityObjectReference: {fileID: 0}
+  targetTransform: {fileID: 0}
+  appliedEffectOffset: {x: 0, y: 0, z: 0}
+  appliedEffectScale: 1
 --- !u!120 &120156265622330602
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -1387,6 +1423,18 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!135 &135299449898769160
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1587388954000720}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135335216192332900
 SphereCollider:
   m_ObjectHideFlags: 1
