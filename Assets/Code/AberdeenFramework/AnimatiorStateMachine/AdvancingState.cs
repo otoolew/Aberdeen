@@ -9,6 +9,10 @@ public class AdvancingState : UnitBaseFSM
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
+        if(unitBrain.Destination == null)
+        {
+            
+        }
         //Debug.Log("Enter Advancing State");
         //unitHUD.ChangeText("Advancing State!");
         navAgent.isStopped = false;
@@ -20,7 +24,7 @@ public class AdvancingState : UnitBaseFSM
     {   // WayPoint Check
         base.OnStateUpdate(animator, stateInfo, layerIndex);
         
-        navAgent.SetDestination(unitBrain.CurrentNode.transform.position);
+        navAgent.SetDestination(unitBrain.Destination);
         navAgent.isStopped = false;
         if (navAgent.remainingDistance < navAgent.stoppingDistance)
         {
@@ -30,7 +34,7 @@ public class AdvancingState : UnitBaseFSM
                 //Debug.Log("Last Node Distance State");
                 //animator.SetBool("IsScanning", true);
                 animator.SetBool("HasNextNode", false);
-                navAgent.SetDestination(unitObject.transform.position);
+                navAgent.SetDestination(unitBrain.Destination);
             }
         }
      

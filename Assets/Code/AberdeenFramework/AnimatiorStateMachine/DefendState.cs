@@ -10,7 +10,7 @@ public class DefendState : UnitBaseFSM
         base.OnStateEnter(animator, stateInfo, layerIndex);
         //Debug.Log("Enter Defend State");
         //unitHUD.ChangeText("Defending State!");
-        navAgent.SetDestination(animator.transform.position);
+        navAgent.SetDestination(unitBrain.Destination);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

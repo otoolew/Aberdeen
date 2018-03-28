@@ -11,36 +11,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(NavMeshAgent))]
 public class UnitBrain : MonoBehaviour
 {
-    /// <summary>
-    /// A means of keeping track of the agent along its path
-    /// </summary>
-    public enum PathState
-    {
-        /// <summary>
-        /// When the agent is on a path that is not blocked
-        /// </summary>
-        OnCompletePath,
 
-        /// <summary>
-        /// When the agent is on a path is blocked
-        /// </summary>
-        OnPartialPath,
-
-        /// <summary>
-        /// When the agent has reached the end of a blocked path
-        /// </summary>
-        Attacking,
-
-        /// <summary>
-        /// For flying agents, when they move over obstacles
-        /// </summary>
-        PushingThrough,
-
-        /// <summary>
-        /// When the agent has completed their path
-        /// </summary>
-        PathComplete
-    }
     public string UnitName;
     private Animator animator;
     private NavMeshAgent navAgent;
@@ -49,7 +20,6 @@ public class UnitBrain : MonoBehaviour
     private Ray ray;
     private RaycastHit rayHit;
     private SphereCollider visionCollider;
-    public PathState pathState { get; protected set; }
     public List<Transform> VisableTargetList;
     public WayPointLane UnitLane;
     public Transform CurrentTarget;
@@ -118,13 +88,13 @@ public class UnitBrain : MonoBehaviour
     {
         WayPointLane[] unitLanes = FindObjectsOfType<WayPointLane>();
 
-        //WayPoint[] waypoints = GameObject.FindObjectsOfType<WayPoint>();
         foreach (var item in unitLanes)
         {
             if (item.WayPointTeam.Value == TeamName.Value)
             {
                 UnitLane = item;
                 CurrentNode = UnitLane.StartingNode;
+                Destination = CurrentNode.GetRandomPointInNodeArea();
                 break;
             }
         }
@@ -187,7 +157,7 @@ public class UnitBrain : MonoBehaviour
     /// Set the NavMeshAgent's destination
     /// </summary>
     /// <param name="nextPoint">The position to navigate to</param>
-    protected virtual void NavigateTo(Vector3 nextPoint)
+    protected void NavigateTo(Vector3 nextPoint)
     {
         if (navAgent.isOnNavMesh)
         {

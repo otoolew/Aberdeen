@@ -89,6 +89,10 @@ public class TroopAgent : Targetable
     public State state { get; protected set; }
 
     /// <summary>
+    /// Tower to target
+    /// </summary>
+    protected GameObject m_TargetTroop;
+    /// <summary>
     /// Accessor to <see cref="m_NavMeshAgent"/>
     /// </summary>
     public NavMeshAgent navMeshNavMeshAgent
@@ -116,7 +120,7 @@ public class TroopAgent : Targetable
     /// <value>
     /// The status of the agent's path
     /// </value>
-    protected virtual bool isPathBlocked
+    protected bool isPathBlocked
     {
         get { return m_NavMeshAgent.pathStatus == NavMeshPathStatus.PathPartial; }
     }
@@ -124,16 +128,20 @@ public class TroopAgent : Targetable
     /// <summary>
     /// Is the Agent close enough to its destination?
     /// </summary>
-    protected virtual bool isAtDestination
+    protected bool isAtDestination
     {
         get { return navMeshNavMeshAgent.remainingDistance <= navMeshNavMeshAgent.stoppingDistance; }
     }
 
     /// <summary>
+    /// Is this agent currently engaging a tower?
+    /// </summary>
+    protected bool m_IsAttacking;
+    /// <summary>
     /// Sets the node to navigate to
     /// </summary>
     /// <param name="node">The node that the agent will navigate to</param>
-    public virtual void SetNode(Node node)
+    public void SetNode(Node node)
     {
         m_CurrentNode = node;
     }
@@ -144,7 +152,6 @@ public class TroopAgent : Targetable
     public override void Remove()
     {
         base.Remove();
-
         //m_LevelManager.DecrementNumberOfEnemies();
         if (m_NavMeshAgent.enabled)
         {
@@ -158,7 +165,7 @@ public class TroopAgent : Targetable
     /// <summary>	
     /// Setup all the necessary parameters for this agent from configuration data
     /// </summary>
-    public virtual void Initialize()
+    public void Initialize()
     {
         ResetPositionData();
         LazyLoad();
@@ -174,7 +181,7 @@ public class TroopAgent : Targetable
     /// <summary>
     /// Finds the next node in the path
     /// </summary>
-    public virtual void GetNextNode(Node currentlyEnteredNode)
+    public void GetNextNode(Node currentlyEnteredNode)
     {
         // Don't do anything if the calling node is the same as the m_CurrentNode
         if (m_CurrentNode != currentlyEnteredNode)
@@ -240,7 +247,7 @@ public class TroopAgent : Targetable
     /// Updates the agent in its different states, 
     /// Reset destination when path is stale
     /// </summary>
-    protected virtual void Update()
+    protected void Update()
     {
         // Update behaviour for different states
         PathUpdate();
@@ -271,7 +278,7 @@ public class TroopAgent : Targetable
     /// Set the NavMeshAgent's destination
     /// </summary>
     /// <param name="nextPoint">The position to navigate to</param>
-    protected virtual void NavigateTo(Vector3 nextPoint)
+    protected void NavigateTo(Vector3 nextPoint)
     {
         LazyLoad();
         if (m_NavMeshAgent.isOnNavMesh)
@@ -283,8 +290,9 @@ public class TroopAgent : Targetable
     /// <summary>
     /// This is a lazy way of caching several components utilised by the Agent
     /// </summary>
-    protected virtual void LazyLoad()
+    protected void LazyLoad()
     {
+        Debug.Log("LazyLoading");
         if (m_NavMeshAgent == null)
         {
             m_NavMeshAgent = GetComponent<NavMeshAgent>();
@@ -297,9 +305,9 @@ public class TroopAgent : Targetable
     }
 
     /// <summary>
-    /// Move along the path, change to <see cref="Agent.State.OnPartialPath" />
+    /// Move along the path, change to <see cref="State.OnPartialPath" />
     /// </summary>
-    protected virtual void OnCompletePathUpdate()
+    protected void OnCompletePathUpdate()
     {
         if (isPathBlocked)
         {
@@ -312,7 +320,19 @@ public class TroopAgent : Targetable
     /// </summary>
     protected void PathUpdate()
     {
-
+        switch (state)
+        {
+            case State.OnCompletePath:
+                OnCompletePathUpdate();
+                break;
+            case State.OnPartialPath:
+                OnPartialPathUpdate();
+                break;
+            case State.Attacking:
+                //AttackingUpdate();
+                break;
+        }
+        Debug.Log("PathUpdate");
     }
 
     /// <summary>
@@ -320,14 +340,74 @@ public class TroopAgent : Targetable
     /// </summary>
     protected void OnPartialPathUpdate()
     {
-    }
+        Debug.Log("OnPartialPathUpdate");
+        if (!isPathBlocked)
+        {
+            state = State.OnCompletePath;
+            return;
+        }
 
+        //// Check for closest tower at the end of the partial path
+        //m_AttackAffector.towerTargetter.transform.position = m_NavMeshAgent.pathEndPosition;
+        //Tower tower = GetClosestTower();
+        //if (tower != m_TargetTower)
+        //{
+        //    // if the current target is to be replaced, unsubscribe from removed event
+        //    if (m_TargetTower != null)
+        //    {
+        //        m_TargetTower.removed -= OnTargetTowerDestroyed;
+        //    }
+
+        //    // assign target, can be null
+        //    m_TargetTower = tower;
+
+        //    // if new target found subscribe to removed event
+        //    if (m_TargetTower != null)
+        //    {
+        //        m_TargetTower.removed += OnTargetTowerDestroyed;
+        //    }
+        //}
+        //if (m_TargetTower == null)
+        //{
+        //    return;
+        //}
+        //float distanceToTower = Vector3.Distance(transform.position, m_TargetTower.transform.position);
+        //if (!(distanceToTower < m_AttackAffector.towerTargetter.effectRadius))
+        //{
+        //    return;
+        //}
+        //if (!m_AttackAffector.enabled)
+        //{
+        //    m_AttackAffector.towerTargetter.transform.position = transform.position;
+        //    m_AttackAffector.enabled = true;
+        //}
+        state = State.Attacking;
+        m_NavMeshAgent.isStopped = true;
+    }
+    /// <summary>
+    /// The agent attacks until the path is available again or it has killed the target tower
+    /// </summary>
+    protected void AttackingUpdate()
+    {
+        if (m_TargetTroop != null)
+        {
+            return;
+        }
+        MoveToNode();
+
+        // Resume path once blocking has been cleared
+        m_IsAttacking = false;
+        m_NavMeshAgent.isStopped = false;
+
+        state = isPathBlocked ? State.OnPartialPath : State.OnCompletePath;
+
+    }
 
 #if UNITY_EDITOR
     /// <summary>
     /// Draw the agent's path
     /// </summary>
-    protected virtual void OnDrawGizmosSelected()
+    protected void OnDrawGizmosSelected()
     {
         if (m_NavMeshAgent != null)
         {

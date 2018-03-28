@@ -20,7 +20,7 @@ public class UnitBaseFSM : StateMachineBehaviour
         navAgent = unitObject.GetComponent<NavMeshAgent>();
         unitBrain = unitObject.GetComponent<UnitBrain>();
         unitWeapon = unitObject.GetComponent<UnitWeaponBehavior>();
-        unitHUD = unitBrain.GetComponent<UnitHUD>();
+        //unitHUD = unitBrain.GetComponent<UnitHUD>();
         unitTarget = unitBrain.CurrentTarget;
 
     }

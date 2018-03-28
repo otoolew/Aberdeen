@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4795450452285122}
   m_Layer: 10
-  m_Name: HitTarget
+  m_Name: Targetable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -424,8 +424,8 @@ GameObject:
   - component: {fileID: 54050524264454876}
   - component: {fileID: 195291094615655972}
   - component: {fileID: 136986825085445298}
-  - component: {fileID: 114061060270067230}
   - component: {fileID: 114900290298857374}
+  - component: {fileID: 114061060270067230}
   m_Layer: 10
   m_Name: ProtoSoldier
   m_TagString: Troop
@@ -664,7 +664,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1585839995004464}
-  m_LocalRotation: {x: 0.6646334, y: 0.041310567, z: 0.7451423, w: 0.036316104}
+  m_LocalRotation: {x: 0.6646334, y: 0.04131057, z: 0.7451423, w: 0.036316108}
   m_LocalPosition: {x: -0.5700798, y: 0.0006140371, z: -0.12735397}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
   m_Children:
@@ -880,7 +880,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4974452713538088}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4732868913526732
 Transform:
@@ -923,7 +923,7 @@ Transform:
   - {fileID: 4270943910842180}
   - {fileID: 4786592794042420}
   m_Father: {fileID: 4974452713538088}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4786592794042420
 Transform:
@@ -952,7 +952,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4974452713538088}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4797032046123302
 Transform:
@@ -1033,7 +1033,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4974452713538088}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4960822870992792
 Transform:
@@ -1046,7 +1046,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4974452713538088}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4974452713538088
 Transform:
@@ -1055,15 +1055,15 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1762219093412988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.29, y: 0, z: 20.39}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4699535863905404}
+  - {fileID: 4795450452285122}
   - {fileID: 4751509845282322}
   - {fileID: 4960822870992792}
   - {fileID: 4936260261261880}
   - {fileID: 224928887041913968}
-  - {fileID: 4795450452285122}
-  - {fileID: 4699535863905404}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1159,7 +1159,7 @@ Animator:
   m_GameObject: {fileID: 1762219093412988}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 317bd1d2b778cf0448b311d615661b6e, type: 3}
-  m_Controller: {fileID: 9100000, guid: b06be00212df9664391fc53a67e0cb81, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2fbecacbfb428a444a6bcde30f11d01a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1184,7 +1184,7 @@ MonoBehaviour:
   searchRate: 0
   idleRotationSpeed: 39
   idleCorrectionTime: 2
-  attachedCollider: {fileID: 0}
+  attachedCollider: {fileID: 135299449898769160}
   idleWaitTime: 2
 --- !u!114 &114061060270067230
 MonoBehaviour:
@@ -1316,10 +1316,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configuration:
-    maxHealth: 0
-    startingHealth: 0
+    maxHealth: 100
+    startingHealth: 100
     alignment:
-      unityObjectReference: {fileID: 0}
+      unityObjectReference: {fileID: 11400000, guid: fa893784ec2213e40931c06f02dec8d1,
+        type: 2}
   targetTransform: {fileID: 0}
   appliedEffectOffset: {x: 0, y: 0, z: 0}
   appliedEffectScale: 1
@@ -1433,7 +1434,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135335216192332900
 SphereCollider:
@@ -1469,8 +1470,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2.5
+  m_Radius: 5
+  m_Height: 12
   m_Direction: 1
   m_Center: {x: 0, y: 0.98, z: 0}
 --- !u!137 &137623338341227286
@@ -1685,7 +1686,7 @@ RectTransform:
   - {fileID: 224398069488990142}
   - {fileID: 224067962854436482}
   m_Father: {fileID: 4974452713538088}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
