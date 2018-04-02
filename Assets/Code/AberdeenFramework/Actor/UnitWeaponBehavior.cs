@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Core.Health;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class UnitWeaponBehavior : MonoBehaviour
     public float EffectDuration;
     public Transform FirePoint;
     LineRenderer lineRenderer;
+    ParticleSystem particleEffects;
     Ray ray;
     RaycastHit rayHit;
     public LayerMask HitMask;
@@ -18,7 +20,9 @@ public class UnitWeaponBehavior : MonoBehaviour
     void Start()
     {
         //Get and store a reference to our LineRenderer component
-        lineRenderer = FirePoint.GetComponent<LineRenderer>();
+        //lineRenderer = FirePoint.GetComponent<LineRenderer>();
+        particleEffects = FirePoint.GetComponentInChildren<ParticleSystem>();
+        EffectDuration = particleEffects.main.duration;
     }
 
     // Update is called once per frame
@@ -29,19 +33,21 @@ public class UnitWeaponBehavior : MonoBehaviour
 
     public void FireWeapon()
     {
-        lineRenderer.enabled = true;
-        lineRenderer.SetPosition(0, FirePoint.transform.position);
+        //lineRenderer.enabled = true;
+        //lineRenderer.SetPosition(0, FirePoint.transform.position);
         ray.origin = FirePoint.transform.position;
         ray.direction = FirePoint.transform.forward;
         StartCoroutine(ShotEffect());
         if (Physics.Raycast(ray, out rayHit, Range, HitMask))
         {
-            //Debug.Log("RayHit " + rayHit.collider.name);
-            lineRenderer.SetPosition(1, rayHit.point);
+            Debug.Log("RayHit " + rayHit.collider.name);
+            DamageableBehaviour damageHandler = rayHit.collider.GetComponent<DamageableBehaviour>();
+            rayHit.collider.GetComponentInParent<DamageableBehaviour>().TakeDamage(Damage);
+            //lineRenderer.SetPosition(1, rayHit.point);
         }
         else
         {
-            lineRenderer.SetPosition(1, ray.origin + ray.direction * Range);
+            //lineRenderer.SetPosition(1, ray.origin + ray.direction * Range);
         }
     }
 
@@ -49,11 +55,12 @@ public class UnitWeaponBehavior : MonoBehaviour
     {
 
         //Turn on our line renderer
-        lineRenderer.enabled = true;
-        //Wait for .07 seconds
+        //lineRenderer.enabled = true;
+        particleEffects.Play();
+        //Wait for Effect to Play
         yield return EffectDuration;
 
         //Deactivate our line renderer after waiting
-        lineRenderer.enabled = false;
+        //lineRenderer.enabled = false;
     }
 }

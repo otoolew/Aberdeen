@@ -8,8 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6f1be0453c54638b1c63e16bf45d671, type: 3}
-  m_Name: BlueAlignment
+  m_Script: {fileID: 11500000, guid: b692c4d20511e0a46a5616b27ea0447b, type: 3}
+  m_Name: BlueTeamAlignment
   m_EditorClassIdentifier: 
   opponents:
-  - {fileID: 11400000, guid: ae70b59cceffa3349b43424342578075, type: 2}
+  - {fileID: 11400000, guid: 3cc209b5a899cc442b1cebd9cad9ae05, type: 2}

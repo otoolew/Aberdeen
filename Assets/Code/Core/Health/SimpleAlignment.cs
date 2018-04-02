@@ -7,7 +7,7 @@ namespace Core.Health
 	/// A simple scriptable object that defines which other alignments it can harm. It can never harm
 	/// any other alignment that's not a SimpleAlignment
 	/// </summary>
-	[CreateAssetMenu(fileName = "Alignment.asset", menuName = "Team Alignment", order = 1)]
+	[CreateAssetMenu(fileName = "SimpleAlignment.asset", menuName = "Simple Alignment", order = 1)]
 	public class SimpleAlignment : ScriptableObject, IAlignmentProvider
 	{
 		/// <summary>

@@ -8,10 +8,16 @@ namespace Core.Health
 	/// </summary>
 	public class DamageableBehaviour : MonoBehaviour
 	{
-		/// <summary>
-		/// The Damageable object
-		/// </summary>
-		public Damageable configuration;
+        public float HP;
+
+        private void Start()
+        {
+            HP = configuration.startingHealth;
+        }
+        /// <summary>
+        /// The Damageable object
+        /// </summary>
+        public Damageable configuration;
 
 		/// <summary>
 		/// Gets whether this <see cref="DamageableBehaviour" /> is dead.
@@ -62,8 +68,19 @@ namespace Core.Health
 				hit(damageInfo);
 			}
 		}
+        /// <summary>
+        /// Takes the damage and also provides a position for the damage being dealt
+        /// </summary>
+        /// <param name="damageValue">Damage value.</param>
+        /// <param name="damagePoint">Damage point.</param>
+        /// <param name="alignment">Alignment value</param>
+        public void TakeDamage(float damageValue)
+        {
+            Debug.Log("Took Damage");
+            HP -= damageValue;
+        }
 
-		protected virtual void Awake()
+        protected virtual void Awake()
 		{
 			configuration.Init();
 			configuration.died += OnConfigurationDied;
