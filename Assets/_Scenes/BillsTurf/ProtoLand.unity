@@ -541,52 +541,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 307086448}
---- !u!1001 &331290555
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -25.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -20.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_RootOrder
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 1352888383427630, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_Name
-      value: BlueSoldier (2)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &333225094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,52 +1050,6 @@ MonoBehaviour:
       area: 173.55362
     completeArea: 357.69574
   outSidePointsParent: {fileID: 1531132633}
---- !u!1001 &558374942
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -21.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -27.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_RootOrder
-      value: 26
-      objectReference: {fileID: 0}
-    - target: {fileID: 1352888383427630, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_Name
-      value: BlueSoldier (10)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &586662551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1226,52 +1134,6 @@ Transform:
   m_Father: {fileID: 333225095}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &674962044
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -29.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -25.74
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_RootOrder
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 1352888383427630, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_Name
-      value: BlueSoldier (6)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &701608946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2027,51 +1889,47 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 912597425}
---- !u!1001 &935188997
+--- !u!1001 &935647060
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
+    - target: {fileID: 4645213676942830, guid: 5d1f694d7504b69418d211f44bcfd9d3, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -27.21
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
+    - target: {fileID: 4645213676942830, guid: 5d1f694d7504b69418d211f44bcfd9d3, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
+    - target: {fileID: 4645213676942830, guid: 5d1f694d7504b69418d211f44bcfd9d3, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -23.44
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
+    - target: {fileID: 4645213676942830, guid: 5d1f694d7504b69418d211f44bcfd9d3, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
+    - target: {fileID: 4645213676942830, guid: 5d1f694d7504b69418d211f44bcfd9d3, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
+    - target: {fileID: 4645213676942830, guid: 5d1f694d7504b69418d211f44bcfd9d3, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
+    - target: {fileID: 4645213676942830, guid: 5d1f694d7504b69418d211f44bcfd9d3, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
+    - target: {fileID: 4645213676942830, guid: 5d1f694d7504b69418d211f44bcfd9d3, type: 2}
       propertyPath: m_RootOrder
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1352888383427630, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_Name
-      value: BlueSoldier (4)
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 5d1f694d7504b69418d211f44bcfd9d3, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &936354850
 GameObject:
@@ -2545,52 +2403,6 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
---- !u!1001 &1055412512
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -26.77
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -27.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_RootOrder
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1352888383427630, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_Name
-      value: BlueSoldier (9)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1098392840
 GameObject:
   m_ObjectHideFlags: 0
@@ -2679,52 +2491,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1209244592
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -24.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -25.48
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_RootOrder
-      value: 23
-      objectReference: {fileID: 0}
-    - target: {fileID: 1352888383427630, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_Name
-      value: BlueSoldier (7)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1221251595
 GameObject:
   m_ObjectHideFlags: 0
@@ -3096,52 +2862,6 @@ Transform:
   m_Father: {fileID: 197140997}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1420181258
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -22.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -23.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_RootOrder
-      value: 21
-      objectReference: {fileID: 0}
-    - target: {fileID: 1352888383427630, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_Name
-      value: BlueSoldier (5)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1445950467
 GameObject:
   m_ObjectHideFlags: 0
@@ -3435,52 +3155,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1001 &1663502681
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -19.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -20.98
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_RootOrder
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 1352888383427630, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_Name
-      value: BlueSoldier (3)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1689243275
 GameObject:
   m_ObjectHideFlags: 0
@@ -3509,52 +3183,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1690367756
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -19.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -25.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036305979782098, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_RootOrder
-      value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 1352888383427630, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-      propertyPath: m_Name
-      value: BlueSoldier (8)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: dbff1b78ea186fe418ce271f239cb0b1, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &1717491192
 Prefab:
   m_ObjectHideFlags: 0

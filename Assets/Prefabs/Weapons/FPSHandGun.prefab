@@ -153,8 +153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30143f1d3b8833e4592ed8218977e713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FirePoint: {fileID: 4903449073391424}
-  WeaponRange: 50
+  FireRate: {fileID: 0}
+  RayRange: {fileID: 0}
+  LayerRayMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!120 &120750395962102334
 LineRenderer:
   m_ObjectHideFlags: 1
